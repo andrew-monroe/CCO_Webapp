@@ -1,0 +1,11 @@
+= form_for :need, url: needs_path do |f|
+  %p
+    = f.label :title
+    %br/
+    = f.text_field :title
+  %p
+    = f.label :description
+    %br/
+    = f.text_area :description
+  %p
+    = f.submit
