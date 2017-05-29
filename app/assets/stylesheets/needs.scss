@@ -1,3 +1,65 @@
 // Place all the styles related to the Needs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.list-group, .list-group-item {
+  background-color: #F0F4CF;
+}
+
+.list-group > .active {
+  background-color: #FBAC00;
+}
+
+.list-group > .disabled, .list-group > .load-more {
+  background-color: #5E4F35;
+  color: #FFFFFF;
+  font-size: 30px;
+}
+
+h1, h2, h3, td {
+  color: #5E4F35;
+}
+
+.agency-name, .need-time {
+  color: #A29C7E;
+}
+
+.need-name {
+  color: #5E4F35;
+  font-size: 20px;
+  word-wrap: break-word;
+  width: 300px;
+}
+
+.volunteer-box {
+  width:100px;
+  height:80px;
+  position:relative;
+  float:right;
+
+  color:#5E4F35;
+}
+
+.volunteers {
+  font-size:15px;
+  position:absolute;
+    top:0;
+    left:18px;
+}
+
+.volunteer-number {
+  font-size:30px;
+  position:absolute;
+    top:25px;
+    left:34px;
+}
+
+@media (max-width: 767px)
+{
+  .page-body {
+    display: none;
+  }
+
+  .sidebar {
+    padding-right:0;
+  }
+}
