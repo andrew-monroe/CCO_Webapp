@@ -1,0 +1,27 @@
+%h1 Administrate Users
+%h2.sub-header User List
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th First
+        %th Last
+        %th KU ID
+        %th Email
+        %th Admin
+        %th Moderator For
+        %th Actions
+        %th
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.first_name
+          %td= user.last_name
+          %td= user.ku_id
+          %td= user.email
+          %td= user.admin
+          %td= user.moderator_for
+          %td= link_to 'Edit', edit_user_path(user)
+          %td= link_to 'Destroy', user_path(need), |
+              method: :delete,                    |
+              data: { confirm: 'Are you sure?' }  |

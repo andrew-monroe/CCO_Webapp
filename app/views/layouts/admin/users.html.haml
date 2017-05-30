@@ -1,0 +1,38 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    / The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "", :name => "author"}/
+    %link{:href => "../../favicon.ico", :rel => "icon"}/
+    %title Admin
+    / Bootstrap core CSS
+    = stylesheet_link_tag "bootstrap"
+    / HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+    /[if lt IE 9]
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  %body
+    %nav.navbar.navbar-inverse
+      .container
+        .navbar-header
+          %a.navbar-brand{:href => "#"} Admin Mode
+        %ul.nav.navbar-nav
+          %li
+            %a{:href => "#about"} Home
+          %li.active
+            %a{:href => "#"} Users
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            %a{:href => "#"} Logout
+    .container-fluid
+      .row
+        .col-sm-10.col-sm-offset-1.col-md-9.col-md-offset-2.col-lg-8.main
+          = yield
+    / jQuery (necessary for Bootstrap's JavaScript plugins)
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"}
+    / Include all compiled plugins (below), or include individual files as needed
