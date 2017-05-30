@@ -1,4 +1,5 @@
 class NeedsController < ApplicationController
+  before_action :authenticate_coordinator!
   def index
     @needs = Need.all
   end
@@ -13,7 +14,6 @@ class NeedsController < ApplicationController
   end
 
   def create
-    @needs = Need.all
     @need = Need.new(need_params)
     @need.save
     redirect_to @need

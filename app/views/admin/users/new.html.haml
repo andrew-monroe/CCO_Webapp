@@ -1,2 +1,41 @@
-%h1 Admin::Users#new
-%p Find me in app/views/admin/users/new.html.erb
+= form_for :user, url: admin_users_path do |f|
+  %h1 New User
+  .table-responsive
+    %table.table
+      %tbody
+        %tr
+          %td
+            %strong First Name:
+          %td
+            = f.text_field :first_name
+        %tr
+          %td
+            %strong Last Name:
+          %td
+            = f.text_field :last_name
+        %tr
+          %td
+            %strong KU ID:
+          %td
+            = f.text_field :ku_id, maxlength:6
+        %tr
+          %td
+            %strong Email:
+          %td
+            = f.email_field :email
+        %tr
+          %td
+            %strong Admin:
+          %td
+            = f.check_box :admin
+        %tr
+          %td
+            %strong Moderator Fors:
+          %td
+            = f.select :moderator_for,
+              ["Campus Cupboard",
+              "Jubilee Cafe",
+              "Music Mentors",
+              "Earth",
+              "Ability Advocates"]
+  = f.submit
