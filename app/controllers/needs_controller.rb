@@ -1,5 +1,6 @@
 class NeedsController < ApplicationController
-  before_action :authenticate_coordinator!
+  before_action :authenticate_coordinator!, except: [:index, :show]
+
   def index
     @needs = Need.all
   end
