@@ -1,4 +1,4 @@
-= form_for :user, url: admin_users_path do |f|
+= form_for :coordinator, url: admin_path do |f|
   %h1 New User
   .table-responsive
     %table.table
@@ -30,7 +30,7 @@
             = f.check_box :admin
         %tr
           %td
-            %strong Moderator Fors:
+            %strong Moderator For:
           %td
             = f.select :moderator_for,
               ["Campus Cupboard",
