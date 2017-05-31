@@ -19,7 +19,7 @@
           %td= user.last_name
           %td= user.ku_id
           %td= user.email
-          %td= user.admin
+          %td= user.admin ? "True" : "False"
           %td= user.moderator_for
           %td= link_to 'Edit', edit_admin_user_path(user)
           %td= link_to 'DestroyButton', admin_user_path(user), |

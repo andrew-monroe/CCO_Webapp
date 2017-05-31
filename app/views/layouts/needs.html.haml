@@ -19,8 +19,14 @@
           Community
           %br>/
           Outreach
-      .btn.btn-default.btn-lg{:style => "position:absolute;top:10px;right:10px", :type => "button"}
-        Login
+      %div{:style => "float:right;padding-top:5px;"}
+        - if coordinator_signed_in?
+          .logged-in-tag Logged in as #{current_coordinator.email}
+          .btn.btn-default.btn-sm{:style => "float:right;", :type => "button"}
+            Logout
+        - else
+          .btn.btn-default.btn-sm{:type => "button"}
+            Login
     .container-fluid
       .row
         .col-xs-12.col-sm-6.col-md-6.col-lg-4.sidebar{:style => "padding-left:0;"}
@@ -30,11 +36,24 @@
             - @needs.each do |need|
               %a.list-group-item.list-group-item-action.flex-column.align-items-start
                 .d-flex.justify-content-between
-                  .volunteer-box
-                    %span.volunteers Volunteers
-                    %span.volunteer-number
-                      = need.volunteers_signed_up
-                      \/#{need.volunteers_needed}
+                  - if need.volunteers_signed_up == 0
+                    .volunteer-box.none
+                      %span.volunteers Volunteers
+                      %span.volunteer-number
+                        = need.volunteers_signed_up
+                        \/ #{need.volunteers_needed}
+                  - elsif need.volunteers_needed == need.volunteers_signed_up
+                    .volunteer-box.full
+                      %span.volunteers Volunteers
+                      %span.volunteer-number
+                        = need.volunteers_signed_up
+                        \/ #{need.volunteers_needed}
+                  - else
+                    .volunteer-box
+                      %span.volunteers Volunteers
+                      %span.volunteer-number
+                        = need.volunteers_signed_up
+                        \/ #{need.volunteers_needed}
                   %span.agency-name= need.agency
                   %br/
                   %span.need-name= need.title
