@@ -6,26 +6,25 @@
         %td
           %strong First Name:
         %td
-          = @user.first_name
+          = @coordinator.first_name
       %tr
         %td
           %strong Last Name:
         %td
-          = @user.last_name
+          = @coordinator.last_name
       %tr
         %td
           %strong Email:
         %td
-          = @user.email
+          = @coordinator.email
       -# %tr
       -#   %td
       -#     %strong Admin:
       -#   %td
-      -#     = @user.admin
+      -#     = @coordinator.admin
       -# %tr
       -#   %td
       -#     %strong Moderator Fors:
       -#   %td
-      -#     = @user.moderator_for
-%button.btn.btn-default.btn-lg{:type => "button"}
-  Done
+      -#     = @coordinator.moderator_for
+= link_to "Back", [:admins], class: "btn-primary btn"

@@ -1,0 +1,25 @@
+%h1 Administrate Users
+%h2.sub-header User List
+.table-responsive
+  %table.table-striped{:style => "width:100%"}
+    %thead
+      %tr
+        %th First
+        %th Last
+        %th Email
+        -# %th Admin
+        -# %th Moderator For
+        %th Actions
+        %th
+    %tbody
+      - @coordinators.each do |coordinator|
+        %tr
+          %td= coordinator.first_name
+          %td= coordinator.last_name
+          %td= coordinator.email
+          -# %td= coordinator.admin ? "True" : "False"
+          -# %td= coordinator.moderator_for
+          %td= link_to 'Edit', edit_admin_path(coordinator)
+          %td= link_to 'Destroy', admin_path(coordinator), |
+              method: :delete,                    |
+              data: { confirm: 'Are you sure?' }  |
