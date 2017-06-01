@@ -8,12 +8,12 @@
       %td
         %strong Starts:
       %td
-        = @need.start_time
+        = @need.formatted_datetime(@need.start_time)
     %tr
       %td
         %strong Ends:
       %td
-        = @need.end_time
+        = @need.formatted_datetime(@need.end_time)
     %tr
       %td
         %strong Description:
@@ -35,4 +35,8 @@
       %td
         = @need.volunteers_signed_up
 %p
-  = link_to 'Go Back', needs_path
+
+%iframe{:allowfullscreen => "", :frameborder => "0", :height => "300", :width => "400", :src => "https://www.google.com/maps/embed/v1/place?key=#{ENV["GOOGLE_MAPS_API_KEY"]}&q=#{@need.no_space_location}", :style => "border:0"}
+
+%br
+= link_to 'Go Back', needs_path, class: "btn btn-primary"

@@ -7,7 +7,28 @@ class Need < ApplicationRecord
     end
   end
 
+  def formatted_datetime(time)
+    time.strftime("%A %B %e, %Y\n%l:%M%p")
+  end
+
   def get_recent
     Need.find(:all, :order => "start_time desc", :limit => 10)
+  end
+
+  def no_space_location
+    spaces_to_pluses(self.location)
+  end
+
+  private
+  def spaces_to_pluses(str)
+    no_space_str = ''
+    str.each_char do |c|
+      if c == ' '
+        no_space_str += '+'
+      else
+        no_space_str += c
+      end
+    end
+    no_space_str
   end
 end
