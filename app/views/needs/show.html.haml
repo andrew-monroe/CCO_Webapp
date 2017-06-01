@@ -1,11 +1,38 @@
-%p
-  %strong Need ID:
-  = @need.id
-%p
-  %strong Need Title:
+%h1
   = @need.title
-%p
-  %strong Need Description:
-  = @need.description
+%h4
+  = @need.agency
+%table{:style => "width:100%;"}
+  %tbody
+    %tr
+      %td
+        %strong Starts:
+      %td
+        = @need.start_time
+    %tr
+      %td
+        %strong Ends:
+      %td
+        = @need.end_time
+    %tr
+      %td
+        %strong Description:
+      %td
+        = @need.description
+    %tr
+      %td
+        %strong Location:
+      %td
+        = @need.location
+    %tr
+      %td
+        %strong Volunteers Needed:
+      %td
+        = @need.volunteers_needed
+    %tr
+      %td
+        %strong Volunteers Signed Up:
+      %td
+        = @need.volunteers_signed_up
 %p
   = link_to 'Go Back', needs_path

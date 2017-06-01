@@ -22,16 +22,14 @@
       %div{:style => "float:right;padding-top:5px;"}
         - if coordinator_signed_in?
           .logged-in-tag Logged in as #{current_coordinator.email}
-          .btn.btn-default.btn-sm{:style => "float:right;", :type => "button"}
-            Logout
+          = link_to('Logout', destroy_coordinator_session_path, :method => :delete, class: "btn btn-primary")
         - else
-          .btn.btn-default.btn-sm{:type => "button"}
-            Login
+          = link_to('Login', new_coordinator_session_path, class: "btn btn-primary")
     .container-fluid
       .row
         .col-xs-12.col-sm-6.col-md-6.col-lg-4.sidebar{:style => "padding-left:0;"}
           .list-group
-            %a.list-group-item.list-group-item-action.disabled{:href => "#"}
+            %a.list-group-item.disabled{:style => "text-align:center;"}
               Upcoming Needs
             - @needs.each do |need|
               %a.list-group-item.list-group-item-action.flex-column.align-items-start
@@ -39,19 +37,19 @@
                   - if need.volunteers_signed_up == 0
                     .volunteer-box.none
                       %span.volunteers Volunteers
-                      %span.volunteer-number
+                      %div.volunteer-number
                         = need.volunteers_signed_up
                         \/ #{need.volunteers_needed}
                   - elsif need.volunteers_needed == need.volunteers_signed_up
                     .volunteer-box.full
                       %span.volunteers Volunteers
-                      %span.volunteer-number
+                      %div.volunteer-number
                         = need.volunteers_signed_up
                         \/ #{need.volunteers_needed}
                   - else
                     .volunteer-box
                       %span.volunteers Volunteers
-                      %span.volunteer-number
+                      %div.volunteer-number
                         = need.volunteers_signed_up
                         \/ #{need.volunteers_needed}
                   %span.agency-name= need.agency
@@ -59,11 +57,10 @@
                   %span.need-name= need.title
                   %br/
                   %span.need-time
-                    = need.start_time
-                    \-#{need.end_time}
-            %a.list-group-item.list-group-item-action.load-more{:href => "#"}
+                    = need.time_range(need.start_time, need.end_time)
+            %a.list-group-item.list-group-item-action.load-more{:href => "#", style: "text-align:center;"}
               Load More
-        .col-sm-6.col-lg-7.page-body
+        .col-sm-6.col-lg-7.page-body{:style => "padding-left:50px;padding-top:20px;"}
           = yield
     / jQuery (necessary for Bootstrap's JavaScript plugins)
     %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"}
