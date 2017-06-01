@@ -3,6 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .list-group, .list-group-item {
   background-color: #F0F4CF;
+  border: none;
+  border-radius: 0;
 }
 
 .list-group > .active {
@@ -41,6 +43,7 @@ h1, h2, h3, td {
   position:relative;
   float:right;
   color:#5E4F35;
+  text-align: center;
 }
 .full {
   color:blue;
@@ -49,18 +52,8 @@ h1, h2, h3, td {
   color:red;
 }
 
-.volunteers {
-  font-size:15px;
-  position:absolute;
-    top:0;
-    left:24px;
-}
-
 .volunteer-number {
   font-size:30px;
-  position:absolute;
-    top:25px;
-    left:34px;
 }
 
 @media (max-width: 767px)
