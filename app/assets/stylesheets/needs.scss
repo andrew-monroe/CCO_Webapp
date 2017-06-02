@@ -7,17 +7,35 @@
   border-radius: 0;
 }
 
-.list-group > .active {
+.list-group > .active, a.list-group-item:active {
   background-color: #FBAC00;
 }
 
-.list-group > .disabled, .list-group > .load-more {
+a.list-group-item.disabled, a.list-group-item.disabled:hover {
+  background-color: #5E4F35;
+  color: #FFFFFF;
+  font-size: 30px;
+  cursor: auto;
+}
+
+.list-group > .load-more {
   background-color: #5E4F35;
   color: #FFFFFF;
   font-size: 30px;
 }
 
-h1, h2, h3, td {
+.list-group > .load-more:hover {
+  background-color: blue;
+  color: #FFFFFF;
+  font-size: 30px;
+}
+
+a.list-group-item:hover {
+  background-color: #ececc6;
+  cursor: pointer;
+}
+
+h1, h2, h3 {
   color: #5E4F35;
 }
 
@@ -54,6 +72,10 @@ h1, h2, h3, td {
 
 .volunteer-number {
   font-size:30px;
+}
+
+.page-body {
+  color: black;
 }
 
 @media (max-width: 767px)

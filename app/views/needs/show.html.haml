@@ -1,42 +1,35 @@
-%h1
-  = @need.title
-%h4
+%p{:style => "font-size:20px;color:#777777;"}
   = @need.agency
-%table{:style => "width:100%;"}
-  %tbody
-    %tr
-      %td
-        %strong Starts:
-      %td
-        = @need.formatted_datetime(@need.start_time)
-    %tr
-      %td
-        %strong Ends:
-      %td
-        = @need.formatted_datetime(@need.end_time)
-    %tr
-      %td
-        %strong Description:
-      %td
-        = @need.description
-    %tr
-      %td
-        %strong Location:
-      %td
-        = @need.location
-    %tr
-      %td
-        %strong Volunteers Needed:
-      %td
-        = @need.volunteers_needed
-    %tr
-      %td
-        %strong Volunteers Signed Up:
-      %td
-        = @need.volunteers_signed_up
-%p
+%p{:style => "font-size:40px;font-weight:bold;"}
+  = @need.title
 
-%iframe{:allowfullscreen => "", :frameborder => "0", :height => "300", :width => "400", :src => "https://www.google.com/maps/embed/v1/place?key=#{ENV["GOOGLE_MAPS_API_KEY"]}&q=#{@need.no_space_location}", :style => "border:0"}
+%p
+  %strong Starts:
+  = @need.formatted_datetime(@need.start_time)
+%p
+  %strong Ends:
+  = @need.formatted_datetime(@need.end_time)
+%br
+
+%p
+  %strong Description:
+  %br
+  = @need.description
+%br
+%p
+  %strong Volunteers Needed:
+  = @need.volunteers_needed
+%p
+  %strong Volunteers Signed Up:
+  = @need.volunteers_signed_up
+
+%p
+  %strong Location:
+  = @need.location
+%iframe{:allowfullscreen => "", :frameborder => "0", :height => "300px", :width => "400px", :src => "https://www.google.com/maps/embed/v1/place?key=#{ENV["GOOGLE_MAPS_API_KEY"]}&q=#{@need.no_space_location}", :style => "border:0;padding-bottom:20px;"}
 
 %br
-= link_to 'Go Back', needs_path, class: "btn btn-primary"
+%a{:style => ""}= link_to 'Sign Me Up!', needs_path, class: "btn btn-lg btn-primary"
+
+%br
+%a{:style => ""}= link_to 'Go Back', needs_path, class: "btn"
