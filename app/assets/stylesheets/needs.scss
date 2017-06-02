@@ -7,8 +7,9 @@
   border-radius: 0;
 }
 
-.list-group > .active, a.list-group-item:active {
+.list-group > .active {
   background-color: #FBAC00;
+  pointer-events: none;
 }
 
 a.list-group-item.disabled, a.list-group-item.disabled:hover {
