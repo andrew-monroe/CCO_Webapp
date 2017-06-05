@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531211624) do
+ActiveRecord::Schema.define(version: 20170605205402) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -82,12 +85,29 @@ ActiveRecord::Schema.define(version: 20170531211624) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.integer "ku_id"
+    t.string "firstName"
+    t.string "lastName"
     t.string "email"
-    t.boolean "admin"
-    t.string "moderator_for"
+    t.string "status"
+    t.string "referenceId"
+    t.string "middleName"
+    t.string "mobile"
+    t.string "phone"
+    t.string "company"
+    t.string "gender"
+    t.string "birthdate"
+    t.string "address"
+    t.string "address2"
+    t.string "city"
+    t.string "state"
+    t.string "postal"
+    t.string "dateAdded"
+    t.string "dateUpdated"
+    t.string "dateLastLogin"
+    t.string "link"
+    t.string "expires"
+    t.string "now"
+    t.string "disasterContact"
   end
 
 end
