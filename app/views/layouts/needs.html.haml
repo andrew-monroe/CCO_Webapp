@@ -9,6 +9,7 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = yield :head
   %body
     .col-xs-12{:style => "width:100%;height:150px;background-color:#96CEB4"}
       %div{:style => "float:left;"}
@@ -31,60 +32,20 @@
             %a.list-group-item.disabled{:style => "text-align:center;"}
               Upcoming Needs
             - @needs.each do |need|
-              - if request.fullpath == "/needs/#{need.id}"
-                %a.list-group-item.need-item.active
-                  .d-flex
-                    - if need.volunteers_signed_up == 0
-                      .volunteer-box.none
-                        %span.volunteers Volunteers
-                        %div.volunteer-number
-                          = need.volunteers_signed_up
-                          \/ #{need.volunteers_needed}
-                    - elsif need.volunteers_needed == need.volunteers_signed_up
-                      .volunteer-box.full
-                        %span.volunteers Volunteers
-                        %div.volunteer-number
-                          = need.volunteers_signed_up
-                          \/ #{need.volunteers_needed}
-                    - else
-                      .volunteer-box
-                        %span.volunteers Volunteers
-                        %div.volunteer-number
-                          = need.volunteers_signed_up
-                          \/ #{need.volunteers_needed}
-                    %span.agency-name= need.agency
-                    %br/
-                    %span.need-name= need.title
-                    %br/
-                    %span.need-time
-                      = need.time_range(need.start_time, need.end_time)
-              - else
-                %a.list-group-item.need-item{:href => "/needs/#{need.id}"}
-                  .d-flex
-                    - if need.volunteers_signed_up == 0
-                      .volunteer-box.none
-                        %span.volunteers Volunteers
-                        %div.volunteer-number
-                          = need.volunteers_signed_up
-                          \/ #{need.volunteers_needed}
-                    - elsif need.volunteers_needed == need.volunteers_signed_up
-                      .volunteer-box.full
-                        %span.volunteers Volunteers
-                        %div.volunteer-number
-                          = need.volunteers_signed_up
-                          \/ #{need.volunteers_needed}
-                    - else
-                      .volunteer-box
-                        %span.volunteers Volunteers
-                        %div.volunteer-number
-                          = need.volunteers_signed_up
-                          \/ #{need.volunteers_needed}
-                    %span.agency-name= need.agency
-                    %br/
-                    %span.need-name= need.title
-                    %br/
-                    %span.need-time
-                      = need.time_range(need.start_time, need.end_time)
+              - class_name = request.fullpath == "/needs/#{need.id}" ? 'active' : ''
+              %a.list-group-item.need-item{:href => need_path(need), class: class_name}
+                .d-flex
+                  .volunteer-box{class: need.pretty_class_name}
+                    %span.volunteers Volunteers
+                    %div.volunteer-number
+                      = need.volunteers_signed_up
+                      \/ #{need.volunteers_needed}
+                  %span.agency-name= need.agency
+                  %br/
+                  %span.need-name= need.title
+                  %br/
+                  %span.need-time
+                    = need.time_range(need.start_time, need.end_time)
             %a.list-group-item.list-group-item-action.load-more{:href => "#", style: "text-align:center;"}
               Load More
         .col-lg-offset-4.col-md-offset-6.page-body{:style => "padding-left:40px;padding-top:180px;"}

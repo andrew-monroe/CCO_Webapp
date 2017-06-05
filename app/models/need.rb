@@ -19,6 +19,16 @@ class Need < ApplicationRecord
     spaces_to_pluses(self.location)
   end
 
+  def pretty_class_name
+    if self.volunteers_signed_up == 0
+      "none"
+    elsif self.volunteers_needed == self.volunteers_signed_up
+      "full"
+    else
+      ""
+    end
+  end
+
   private
   def spaces_to_pluses(str)
     no_space_str = ''

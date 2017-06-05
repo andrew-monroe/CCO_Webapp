@@ -78,14 +78,3 @@ h1, h2, h3 {
 .page-body {
   color: black;
 }
-
-@media (max-width: 767px)
-{
-  .page-body {
-    display: none;
-  }
-
-  .sidebar {
-    padding-right:0;
-  }
-}
