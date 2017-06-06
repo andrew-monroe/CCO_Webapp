@@ -6,16 +6,18 @@
 %p{:style => "font-size:40px;font-weight:bold;"}
   = @need.title
 
-%p
-  %strong Time:
-  = @need.time
-%br
-
-%p
-  %strong Description:
+= if @need.time != nil
+  %p
+    %strong Time:
+    = @need.time
   %br
-  = @need.description
-%br
+
+= if @need.time != nil
+  %p
+    %strong Description:
+    %br
+    = @need.description
+  %br
 
 = if @need.volunteers_needed != 0 && @need.volunteers_needed != nil
   %p
