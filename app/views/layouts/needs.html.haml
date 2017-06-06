@@ -37,15 +37,19 @@
                 .d-flex
                   .volunteer-box{class: need.pretty_class_name}
                     %span.volunteers Volunteers
-                    %div.volunteer-number
-                      = need.volunteers_signed_up
-                      \/ #{need.volunteers_needed}
+                    - if need.volunteers_needed == 0 || need.volunteers_needed == nil
+                      %div.volunteer-number
+                        = need.volunteers_signed_up
+                    - else
+                      %div.volunteer-number
+                        = need.volunteers_signed_up
+                        \/ #{need.volunteers_needed}
                   %span.agency-name= need.agency
                   %br/
                   %span.need-name= need.title
                   %br/
                   %span.need-time
-                    = need.time_range(need.start_time, need.end_time)
+                    = need.time
             %a.list-group-item.list-group-item-action.load-more{:href => "#", style: "text-align:center;"}
               Load More
         .col-lg-offset-4.col-md-offset-6.page-body{:style => "padding-left:40px;padding-top:180px;"}

@@ -1,19 +1,4 @@
 = content_for :head do
   = stylesheet_link_tag 'needs-index'
-end
 
-%h1 List of Needs:
-%table{:style => "width:100%"}
-  %tr
-    %th Title
-    %th Description
-  - @needs.each do |need|
-    %tr
-      %td= need.title
-      %td= need.description
-      %td= link_to 'Show', need_path(need)
-      %td= link_to 'Edit', edit_need_path(need)
-      %td= link_to 'Destroy', need_path(need), |
-          method: :delete,                    |
-          data: { confirm: 'Are you sure?' }  |
-= link_to 'Create New', new_need_path
+%h1 Pick a need to the left!

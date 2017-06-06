@@ -20,7 +20,9 @@ class Need < ApplicationRecord
   end
 
   def pretty_class_name
-    if self.volunteers_signed_up == 0
+    if self.volunteers_needed == 0 || self.volunteers_needed == nil
+      "no-limit"
+    elsif self.volunteers_signed_up == 0
       "none"
     elsif self.volunteers_needed == self.volunteers_signed_up
       "full"

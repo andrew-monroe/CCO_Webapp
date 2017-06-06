@@ -1,7 +1,9 @@
 class NeedsController < ApplicationController
   before_action :authenticate_coordinator!, except: [:index, :show]
+  include NeedsHelper
 
   def index
+    update_need_database
     @needs = Need.all
   end
 
@@ -34,6 +36,6 @@ class NeedsController < ApplicationController
 
   private
   def need_params
-    params.require(:need).permit(:title,:description,:agency,:location,:start_time,:end_time,:volunteers_needed,:volunteers_signed_up)
+    params.require(:need).permit(:title,:description,:agency,:location,:time,:volunteers_needed,:volunteers_signed_up)
   end
 end

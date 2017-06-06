@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170605205402) do
+ActiveRecord::Schema.define(version: 20170606201327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 20170605205402) do
 
   create_table "agencies", force: :cascade do |t|
     t.string "name"
-    t.integer "galaxy_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -75,39 +74,20 @@ ActiveRecord::Schema.define(version: 20170605205402) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "agency"
-    t.datetime "start_time"
-    t.datetime "end_time"
     t.text "location"
     t.integer "volunteers_needed"
     t.integer "volunteers_signed_up"
     t.integer "agency_id"
     t.integer "galaxy_id"
+    t.string "time"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "firstName"
-    t.string "lastName"
+    t.string "first_name"
+    t.string "last_name"
     t.string "email"
-    t.string "status"
-    t.string "referenceId"
-    t.string "middleName"
-    t.string "mobile"
-    t.string "phone"
-    t.string "company"
-    t.string "gender"
-    t.string "birthdate"
-    t.string "address"
-    t.string "address2"
-    t.string "city"
-    t.string "state"
-    t.string "postal"
-    t.string "dateAdded"
-    t.string "dateUpdated"
-    t.string "dateLastLogin"
-    t.string "link"
-    t.string "expires"
-    t.string "now"
-    t.string "disasterContact"
+    t.boolean "admin"
+    t.string "moderator_for"
   end
 
 end

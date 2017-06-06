@@ -19,11 +19,7 @@
   %p
     = f.label :start_time
     %br/
-    = f.datetime_select :start_time
-  %p
-    = f.label :end_time
-    %br/
-    = f.datetime_select :end_time
+    = f.datetime_select.to_s :time
   %p
     = f.label :volunteers_needed
     %br/

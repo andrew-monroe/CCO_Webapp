@@ -1,6 +1,5 @@
 = content_for :head do
   = stylesheet_link_tag 'needs-show'
-end
 
 %p{:style => "font-size:20px;color:#777777;"}
   = @need.agency
@@ -8,11 +7,8 @@ end
   = @need.title
 
 %p
-  %strong Starts:
-  = @need.formatted_datetime(@need.start_time)
-%p
-  %strong Ends:
-  = @need.formatted_datetime(@need.end_time)
+  %strong Time:
+  = @need.time
 %br
 
 %p
@@ -20,12 +16,14 @@ end
   %br
   = @need.description
 %br
-%p
-  %strong Volunteers Needed:
-  = @need.volunteers_needed
-%p
-  %strong Volunteers Signed Up:
-  = @need.volunteers_signed_up
+
+= if @need.volunteers_needed != 0 && @need.volunteers_needed != nil
+  %p
+    %strong Volunteers Needed:
+    = @need.volunteers_needed
+  %p
+    %strong Volunteers Signed Up:
+    = @need.volunteers_signed_up
 
 %p
   %strong Location:
