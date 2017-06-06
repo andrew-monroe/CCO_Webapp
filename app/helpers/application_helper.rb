@@ -1,7 +1,6 @@
 module ApplicationHelper
   PAGE_LENGTH = 50
 
-  # private
   def get_from_galaxy(uri,optional_params={})
     response = HTTP.get("https://api2.galaxydigital.com#{uri}",
                 :params => optional_params.merge({ :key => "#{ENV["GALAXY_API_KEY"]}" }))

@@ -1,6 +1,6 @@
 module UserHelper
-  def get_user(user_name)
-
+  def get_user(user_email)
+    User.find_by(email: "#{user_email}")
   end
 
   def get_user_list_from_galaxy

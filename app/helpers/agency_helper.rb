@@ -1,6 +1,6 @@
 module AgencyHelper
   def get_agency(agency_name)
-
+    Agency.find_by(name: "#{agency_name}")
   end
 
   def get_agency_list_from_galaxy

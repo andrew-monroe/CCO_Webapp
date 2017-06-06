@@ -2,7 +2,7 @@ module NeedsHelper
   include ApplicationHelper
 
   def get_need(need_name)
-
+    Need.find_by(name: "#{need_name}")
   end
 
   def get_need_list_from_galaxy
@@ -26,7 +26,7 @@ module NeedsHelper
     end
   end
 
-  # private
+  private
   def get_volunteers_signed_up_count(need_galaxy_id)
     if need_galaxy_id == nil
       return nil
