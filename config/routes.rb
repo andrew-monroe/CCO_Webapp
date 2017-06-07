@@ -3,9 +3,15 @@ Rails.application.routes.draw do
   devise_for :coordinators
   # devise_for :installs
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :needs
+  resources :volunteer_needs, only: [:index, :show]
+  resources :coordinators
+  resources :agencies, only: [:index, :show]
+  resources :users, only: [:index, :show]
+  resources :needs, only: [:index, :show]
 
-  resources :admins
+  get '/galaxy/fetch_needs', to: 'galaxy#fetch_needs'
+  get '/galaxy/fetch_agencies', to: 'galaxy#fetch_agencies'
+  get '/galaxy/fetch_users', to: 'galaxy#fetch_users'
 
-  root 'needs#index'
+  root 'volunteer_needs#index'
 end

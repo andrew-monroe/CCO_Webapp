@@ -10,6 +10,7 @@ class Need < ApplicationRecord
   # def formatted_datetime(time)
   #   time.strftime("%A %B %e, %Y\n%l:%M%p")
   # end
+  validates :galaxy_id, uniqueness: true
 
   def get_recent
     Need.find(:all, :order => "start_time desc", :limit => 10)

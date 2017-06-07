@@ -1,4 +1,9 @@
-= content_for :head do
-  = stylesheet_link_tag 'needs-index'
+%h1 Administrate Needs
+= link_to('Fetch Needs', galaxy_fetch_needs_path, class: "btn btn-primary")
+%br
+%br
 
-%h1 Pick a need to the left!
+- @needs.each do |need|
+  %p{:style => "font-weight:bold;"}
+    = link_to("View", need_path(need), class: "btn btn-default btn")
+    = need.title

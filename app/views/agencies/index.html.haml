@@ -1,0 +1,9 @@
+%h1 Administrate Agencies
+= link_to('Fetch Agencies', galaxy_fetch_agencies_path, class: "btn btn-primary")
+%br
+%br
+
+- @agencies.each do |agency|
+  %p{:style => "font-weight:bold;"}
+    = link_to("View", agency_path(agency), class: "btn btn-default btn")
+    = agency.name

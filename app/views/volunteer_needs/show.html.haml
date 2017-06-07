@@ -1,0 +1,38 @@
+= content_for :head do
+  = stylesheet_link_tag 'needs-show'
+
+%p{:style => "font-size:20px;color:#777777;"}
+  = @need.agency
+%p{:style => "font-size:40px;font-weight:bold;"}
+  = @need.title
+
+= if @need.time != nil
+  %p
+    %strong Time:
+    = @need.time
+  %br
+
+= if @need.time != nil
+  %p
+    %strong Description:
+    %br
+    = @need.description
+  %br
+
+= if @need.volunteers_needed != 0 && @need.volunteers_needed != nil
+  %p
+    %strong Volunteers Needed:
+    = @need.volunteers_needed
+  %p
+    %strong Volunteers Signed Up:
+    = @need.volunteers_signed_up
+
+%p
+  %strong Location:
+  = @need.location
+%iframe{:allowfullscreen => "", :frameborder => "0", :height => "300px", :width => "400px", :src => "https://www.google.com/maps/embed/v1/place?key=#{ENV["GOOGLE_MAPS_API_KEY"]}&q=#{@need.no_space_location}", :style => "border:0;padding-bottom:20px;"}
+
+%br
+
+= link_to('Sign Me Up!', "#{@need.need_link}", class: "btn btn-lg btn-primary")
+= link_to('Go Back', volunteer_needs_path, class: "btn btn-default")

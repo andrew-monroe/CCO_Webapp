@@ -1,0 +1,11 @@
+%h1 Administrate Users
+= link_to('Fetch Users', galaxy_fetch_users_path, class: "btn btn-primary")
+%br
+%br
+
+- @users.each do |user|
+  %p{:style => "font-weight:bold;"}
+    = link_to("View", user_path(user), class: "btn btn-default btn")
+    = user.email
+
+-# = link_to('Next Page', users_path(:offset => ), class: "btn btn-primary")

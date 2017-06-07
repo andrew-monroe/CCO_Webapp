@@ -1,0 +1,47 @@
+= form_for @coordinator do |f|
+  %h1 New Coordinator
+  .table-responsive
+    %table.table
+      %tbody
+        %tr
+          %td
+            %strong First Name:
+          %td
+            = f.text_field :first_name
+        %tr
+          %td
+            %strong Last Name:
+          %td
+            = f.text_field :last_name
+        %tr
+          %td
+            %strong Email:
+          %td
+            = f.email_field :email
+        %tr
+          %td
+            %strong Password:
+          %td
+            = f.label :password
+            - if @minimum_password_length
+              %em
+                (#{@minimum_password_length} characters minimum)
+            %br/
+            = f.password_field :password, autocomplete: "off"
+        %tr
+          %td
+            %strong Moderator For:
+          %td
+            = f.select :moderator_for, Agency.all.collect {|agency| agency[:name]}
+
+
+  - if @coordinator.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@coordinator.errors.count, "error")
+        prohibited this post from being saved:
+      %ul
+        - @coordinator.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.submit

@@ -1,0 +1,2 @@
+module GalaxyHelper
+end

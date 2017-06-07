@@ -1,0 +1,9 @@
+%h1
+  = @user.first_name
+  = @user.last_name
+%p
+  %strong Details:
+%p
+  Nothing
+
+= link_to('Return', users_path, class: "btn btn-primary")

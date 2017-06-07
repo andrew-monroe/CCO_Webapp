@@ -1,5 +1,4 @@
-%h1 Administrate Users
-%h2.sub-header User List
+%h1 Administrate Coordinators
 .table-responsive
   %table.table-striped{:style => "width:100%"}
     %thead
@@ -19,12 +18,12 @@
           %td= coordinator.email
           -# %td= coordinator.admin ? "True" : "False"
           -# %td= coordinator.moderator_for
-          %td= link_to 'Edit', edit_admin_path(coordinator)
-          %td= link_to 'Destroy', admin_path(coordinator), |
+          %td= link_to 'Edit', edit_coordinator_path(coordinator)
+          %td= link_to 'Destroy', coordinator_path(coordinator), |
               method: :delete,                    |
               data: { confirm: 'Are you sure?' }  |
 
 
-= link_to('Add Coordinator', new_admin_path, class: "btn btn-primary")
+= link_to('Add Coordinator', new_coordinator_path, class: "btn btn-primary")
 
--# = link_to('Update Needs', update_needs_admin_path, class: "btn btn-primary")
+-# = link_to('Update Needs', admin_update_needs_path, class: "btn btn-primary")
