@@ -11,6 +11,7 @@ class Need < ApplicationRecord
   #   time.strftime("%A %B %e, %Y\n%l:%M%p")
   # end
   validates :galaxy_id, uniqueness: true
+  belongs_to :agency
 
   def get_recent
     Need.find(:all, :order => "start_time desc", :limit => 10)

@@ -22,7 +22,6 @@
           %td
             %strong Password:
           %td
-            = f.label :password
             - if @minimum_password_length
               %em
                 (#{@minimum_password_length} characters minimum)
@@ -30,10 +29,12 @@
             = f.password_field :password, autocomplete: "off"
         %tr
           %td
-            %strong Moderator For:
+            %strong Coordinator For:
           %td
-            = f.select :moderator_for, Agency.all.collect {|agency| agency[:name]}
-
+            = f.collection_check_boxes :agency_ids, Agency.all, :id, :name do |b|
+              = b.check_box
+              = b.label
+              %br
 
   - if @coordinator.errors.any?
     #error_explanation

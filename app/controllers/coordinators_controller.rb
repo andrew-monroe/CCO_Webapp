@@ -27,6 +27,12 @@ class CoordinatorsController < ApplicationController
     @coordinator = Coordinator.find(params[:id])
   end
 
+  def update
+    @coordinator = Coordinator.find(params[:id])
+    @coordinator.update(coordinator_params)
+    redirect_to coordinators_path
+  end
+
   def destroy
     @coordinator = Coordinator.find(params[:id])
     @coordinator.destroy
@@ -35,6 +41,6 @@ class CoordinatorsController < ApplicationController
 
   private
   def coordinator_params
-    params.require(:coordinator).permit(:first_name,:last_name,:email,:password)
+    params.require(:coordinator).permit(:first_name,:last_name,:email,:password,agency_ids:[])
   end
 end

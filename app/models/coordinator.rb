@@ -4,7 +4,7 @@ class Coordinator < ApplicationRecord
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :agency_coordinations
-  has_many :agencies, :through => :agency_coordinations
+  # has_many :agency_coordinations
+  has_and_belongs_to_many :agencies
   has_many :needs, :through => :agencies
 end

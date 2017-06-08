@@ -1,6 +1,6 @@
 class Agency < ApplicationRecord
-  has_many :agency_coordinations
-  has_many :coordinators, :through => :agency_coordinations
+  # has_many :agency_coordinations
+  has_and_belongs_to_many :coordinators
   has_many :needs
 
   validates :galaxy_id, uniqueness: true
