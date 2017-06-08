@@ -12,11 +12,11 @@
     = @need.time
   %br
 
-= if @need.time != nil
+= if @need.description != nil
   %p
     %strong Description:
     %br
-    = @need.description
+    = @need.description.html_safe
   %br
 
 = if @need.volunteers_needed != 0 && @need.volunteers_needed != nil
