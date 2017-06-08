@@ -1,15 +1,14 @@
 class GalaxyNeedFetcher < GalaxyApiFetcher
-  def get_need(need_name)
-    Need.find_by(name: "#{need_name}")
-  end
+  # def get_need(need_name)
+  #   Need.find_by(name: "#{need_name}")
+  # end
 
   def get_need_list_from_galaxy
     get_full_list_from_galaxy("/volunteer/need/list/")
   end
 
   def update_need_database
-    need_list = get_need_list_from_galaxy
-    need_list.each do |need|
+    get_need_list_from_galaxy.each do |need|
       Need.create({
         title: need['needTitle'],
         description: need['needDetails'],
