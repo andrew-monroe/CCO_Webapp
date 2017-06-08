@@ -2,34 +2,16 @@ class VolunteerNeedsController < ApplicationController
   before_action :authenticate_coordinator!, except: [:index, :show]
 
   def index
-    @needs = Need.all
+    if params[:agency_id] != nil
+      @needs = Need.where(agency_id: params[:agency_id])
+    else
+      @needs = Need.all
+    end
   end
 
   def show
     @needs = Need.all
     @need = Need.find(params[:id])
-  end
-
-  def new
-    @needs = Need.all
-  end
-
-  def create
-    @need = Need.new(need_params)
-    @need.save
-    redirect_to @need
-  end
-
-  def edit
-    @needs = Need.all
-    @need = Need.find(params[:id])
-  end
-
-  def destroy
-    @needs = Need.all
-    @need = Need.find(params[:id])
-    @need.destroy
-    redirect_to volunteer_needs_path
   end
 
   private
