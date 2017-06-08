@@ -78,3 +78,18 @@ h1, h2, h3 {
 .page-body {
   color: black;
 }
+
+.sidebar {
+  padding-right: 0;
+}
+
+@media (max-width: 767px)
+{
+  .disappearable {
+    display: none;
+  }
+
+  .permenant {
+    display: inline;
+  }
+}

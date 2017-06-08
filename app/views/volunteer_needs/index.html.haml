@@ -1,4 +1,4 @@
-= content_for :head do
-  = stylesheet_link_tag 'needs-index'
-
-%h1 Pick a need to the left!
+.col-xs-12.col-sm-6.col-md-6.col-lg-4.sidebar.permanent{:style => "padding-left:0;"}
+  = render 'sidebar'
+.col-lg-offset-5.col-md-offset-7.col-sm-offset-7.page-body.disappearable{:style => "padding-top:180px;"}
+  %h1 Pick a need to the left!
