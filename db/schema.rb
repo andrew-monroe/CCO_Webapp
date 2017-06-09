@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608220134) do
+ActiveRecord::Schema.define(version: 20170609190731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,11 @@ ActiveRecord::Schema.define(version: 20170608220134) do
     t.integer "galaxy_id"
     t.string "time"
     t.string "need_link"
+    t.time "start_time"
+    t.time "end_time"
+    t.date "date"
+    t.datetime "start_date_time"
+    t.datetime "end_date_time"
   end
 
   create_table "users", force: :cascade do |t|
