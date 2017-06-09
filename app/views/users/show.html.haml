@@ -2,8 +2,8 @@
   = @user.first_name
   = @user.last_name
 %p
-  %strong Details:
+  %strong Email:
 %p
-  Nothing
+  = @user.email
 
 = link_to('Return', users_path, class: "btn btn-primary")

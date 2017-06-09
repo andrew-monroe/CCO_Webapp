@@ -1,8 +1,21 @@
 %h1
   = @need.title
 %p
+  %strong Start Date Time:
+%p
+  = @need.start_date_time
+%p
+  %strong End Date Time:
+%p
+  = @need.end_date_time
+%p
+  %strong Agency:
+%p
+  = @need.agency.name
+%p
   %strong Link:
 %p
-  = @need.need_link
+  = link_to('Galaxy Page', "#{@need.need_link}", class: "btn btn-default")
 
-= link_to('Return', needs_path, class: "btn btn-primary")
+%br
+= link_to('Return', needs_path, class: "btn btn-primary btn-lg")
