@@ -1,47 +1,42 @@
 // Place all the styles related to the Needs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.list-group, .list-group-item {
-  background-color: #F0F4CF;
-  border: none;
-  border-radius: 0;
-}
 
-.list-group > .active {
-  background-color: #FBAC00;
-  pointer-events: none;
-}
-
-a.list-group-item.disabled, a.list-group-item.disabled:hover {
-  background-color: #5E4F35;
-  color: #FFFFFF;
-  font-size: 30px;
-  cursor: auto;
-}
-
-.list-group > .load-more {
-  background-color: #5E4F35;
-  color: #FFFFFF;
-  font-size: 30px;
-}
-
-.list-group > .load-more:hover {
-  background-color: blue;
-  color: #FFFFFF;
-  font-size: 30px;
-}
-
-a.list-group-item:hover {
-  background-color: #ececc6;
-  cursor: pointer;
-}
+// .list-group, a.list-group-item {
+//
+//   background-color: #F0F4CF;
+//   border: none;
+//   border-radius: 0;
+//
+//   .active {
+//     background-color: #FBAC00;
+//     pointer-events: none;
+//   }
+//   .load-more {
+//     background-color: #5E4F35;
+//     color: #FFFFFF;
+//     font-size: 30px;
+//   }
+//   .load-more:hover {
+//     background-color: blue;
+//     color: #FFFFFF;
+//     font-size: 30px;
+//   }
+//
+//   .disabled, .disabled:hover {
+//     background-color: #5E4F35;
+//     color: #FFFFFF;
+//     font-size: 30px;
+//     cursor: auto;
+//   }
+// }
 
 h1, h2, h3 {
   color: #5E4F35;
 }
 
 .logged-in-tag {
-  color: #5E4F35;
+  color: white;
   font-size: 15px;
 }
 
@@ -64,15 +59,16 @@ h1, h2, h3 {
   color:#5E4F35;
   text-align: center;
 }
-.full {
-  color:blue;
-}
-.none {
-  color:red;
-}
 
 .volunteer-number {
   font-size:30px;
+
+  .full {
+    color:blue;
+  }
+  .none {
+    color:red;
+  }
 }
 
 .page-body {
@@ -85,11 +81,20 @@ h1, h2, h3 {
 
 @media (max-width: 767px)
 {
-  .disappearable {
+  .big-screens-only {
     display: none;
   }
-
-  .permenant {
+  .small-screens-only {
     display: inline;
+  }
+}
+
+@media (min-wdith: 768px)
+{
+  .big-screens-only {
+    display: inline;
+  }
+  .small-screens-only {
+    display: none;
   }
 }
