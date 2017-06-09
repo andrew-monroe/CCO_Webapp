@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
   resources :needs, only: [:index, :show]
 
+  get '/coordinator_view/needs', to: 'coordinator_view#index'
+  get '/coordinator_view/need/:id', to: 'coordinator_view#show'
+
   get '/galaxy/fetch_needs', to: 'galaxy#fetch_needs'
   get '/galaxy/fetch_agencies', to: 'galaxy#fetch_agencies'
   get '/galaxy/fetch_users', to: 'galaxy#fetch_users'
