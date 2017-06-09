@@ -1,0 +1,13 @@
+%div{:style => "float:left;"}
+  %h1
+    Center for
+    %br>/
+    Community
+    %br>/
+    Outreach
+%div{:style => "float:right;padding-top:5px;"}
+  - if coordinator_signed_in?
+    .logged-in-tag Logged in as #{current_coordinator.email}
+    = link_to('Logout', destroy_coordinator_session_path, :method => :delete, class: "btn btn-primary")
+  - else
+    = link_to('Login', new_coordinator_session_path, class: "btn btn-primary")

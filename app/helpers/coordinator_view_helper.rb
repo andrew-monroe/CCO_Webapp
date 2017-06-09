@@ -1,0 +1,2 @@
+module CoordinatorViewHelper
+end
