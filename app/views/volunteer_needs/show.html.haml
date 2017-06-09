@@ -1,25 +1,25 @@
 .col-xs-12.col-sm-6.col-md-6.col-lg-4.sidebar.big-screen-only{:style => "padding-left:0;"}
   = render partial: 'sidebar', layout: 'sidebar'
-.col-lg-offset-5.col-md-offset-7.page-body{:style => "padding-top:180px;"}
+.page-body{:style => "padding-top:180px;padding-right:30px;padding-left=30px;"}
   %p{:style => "font-size:20px;color:#777777;"}
-    = @need.agency
+    = @need.agency_name
   %p{:style => "font-size:40px;font-weight:bold;"}
     = @need.title
 
-  -# = if @need.time != nil
-  -#   %p
-  -#     %strong Time:
-  -#     = @need.time
-  -#   %br
-  -#
-  -# = if @need.description != nil
-  -#   %p
-  -#     %strong Description:
-  -#     %br
-  -#     = @need.description.html_safe
-  -#   %br
+  - if @need.time != nil
+    %p
+      %strong Time:
+      = @need.time
+    %br
 
-  = if @need.volunteers_needed != 0 && @need.volunteers_needed != nil
+  - if @need.description != nil
+    %p
+      %strong Description:
+      %br
+      = @need.description.html_safe
+    %br
+
+  - if @need.volunteers_needed != 0 && @need.volunteers_needed != nil
     %p
       %strong Volunteers Needed:
       = @need.volunteers_needed

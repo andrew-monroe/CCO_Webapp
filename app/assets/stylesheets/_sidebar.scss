@@ -1,4 +1,4 @@
-.list-group, .list-group-item {
+.list-group.list-of-needs, .list-group-item.need-item {
 
   background-color: #F0F4CF;
   border: none;
@@ -19,10 +19,41 @@
     font-size: 30px;
   }
 
-  .disabled, .disabled:hover {
+  .title-item, .title-item:hover {
     background-color: #5E4F35;
     color: #FFFFFF;
     font-size: 30px;
     cursor: auto;
+  }
+
+  .agency-name, .need-time {
+    color: #A29C7E;
+  }
+
+  .need-name {
+    color: #5E4F35;
+    font-size: 20px;
+    word-wrap: break-word;
+    width: 300px;
+  }
+
+  .volunteer-box {
+    width:100px;
+    height:80px;
+    position:relative;
+    float:right;
+    color:#5E4F35;
+    text-align: center;
+  }
+
+  .volunteer-number {
+    font-size:30px;
+
+    .full {
+      color:blue;
+    }
+    .none {
+      color:red;
+    }
   }
 }

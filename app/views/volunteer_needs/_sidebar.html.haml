@@ -1,5 +1,5 @@
-.list-group
-  %a.list-group-item.disabled{:style => "text-align:center;"}
+.list-group.list-of-needs
+  %a.list-group-item.title-item{:style => "text-align:center;"}
     Upcoming Needs
   - @needs.each do |need|
     - class_name = request.fullpath == "/needs/#{need.id}" ? 'active' : ''
@@ -14,11 +14,11 @@
             %div.volunteer-number
               = need.volunteers_signed_up
               \/ #{need.volunteers_needed}
-        %span.agency-name= need.agency
+        %span.agency-name= need.agency_name
         %br/
         %span.need-name= need.title
         %br/
         %span.need-time
-          = need.time
+          = need.time_range
   %a.list-group-item.list-group-item-action.load-more{:href => "#", style: "text-align:center;"}
     Load More

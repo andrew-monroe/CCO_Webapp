@@ -2,35 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// .list-group, a.list-group-item {
-//
-//   background-color: #F0F4CF;
-//   border: none;
-//   border-radius: 0;
-//
-//   .active {
-//     background-color: #FBAC00;
-//     pointer-events: none;
-//   }
-//   .load-more {
-//     background-color: #5E4F35;
-//     color: #FFFFFF;
-//     font-size: 30px;
-//   }
-//   .load-more:hover {
-//     background-color: blue;
-//     color: #FFFFFF;
-//     font-size: 30px;
-//   }
-//
-//   .disabled, .disabled:hover {
-//     background-color: #5E4F35;
-//     color: #FFFFFF;
-//     font-size: 30px;
-//     cursor: auto;
-//   }
-// }
-
 h1, h2, h3 {
   color: #5E4F35;
 }
@@ -38,37 +9,6 @@ h1, h2, h3 {
 .logged-in-tag {
   color: white;
   font-size: 15px;
-}
-
-.agency-name, .need-time {
-  color: #A29C7E;
-}
-
-.need-name {
-  color: #5E4F35;
-  font-size: 20px;
-  word-wrap: break-word;
-  width: 300px;
-}
-
-.volunteer-box {
-  width:100px;
-  height:80px;
-  position:relative;
-  float:right;
-  color:#5E4F35;
-  text-align: center;
-}
-
-.volunteer-number {
-  font-size:30px;
-
-  .full {
-    color:blue;
-  }
-  .none {
-    color:red;
-  }
 }
 
 .page-body {
@@ -79,7 +19,7 @@ h1, h2, h3 {
   padding-right: 0;
 }
 
-@media (max-width: 767px)
+@media (max-width: 899px)
 {
   .big-screens-only {
     display: none;
@@ -89,7 +29,7 @@ h1, h2, h3 {
   }
 }
 
-@media (min-wdith: 768px)
+@media (min-wdith: 900px)
 {
   .big-screens-only {
     display: inline;
