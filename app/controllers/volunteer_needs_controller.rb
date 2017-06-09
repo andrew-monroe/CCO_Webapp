@@ -1,16 +1,15 @@
 class VolunteerNeedsController < ApplicationController
-  before_action :authenticate_coordinator!, except: [:index, :show]
-
+  
   def index
     if params[:agency_id] != nil
-      @needs = Need.where(agency_id: params[:agency_id])
+      @needs = Agency.find_by(galaxy_id: params[:agency_id]).needs.order(:start_date_time)
     else
-      @needs = Need.all
+      @needs = Need.order(:start_date_time)
     end
   end
 
   def show
-    @needs = Need.all
+    @needs = Need.order(:start_date_time)
     @need = Need.find(params[:id])
   end
 

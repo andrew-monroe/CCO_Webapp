@@ -6,6 +6,6 @@ class Agency < ApplicationRecord
   validates :galaxy_id, uniqueness: true
 
   def get_needs
-    Need.where(agency_id: self.id)
+    Need.where(agency_id: self.galaxy_id)
   end
 end
