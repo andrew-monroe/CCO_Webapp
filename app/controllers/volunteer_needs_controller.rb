@@ -1,11 +1,11 @@
 class VolunteerNeedsController < ApplicationController
 
   def index
-    @needs = get_needs.order(:start_date_time)
+    @needs = get_needs
   end
 
   def show
-    @needs = get_needs.order(:start_date_time)
+    @needs = get_needs
     @need = Need.find(params[:id])
   end
 
@@ -13,11 +13,25 @@ class VolunteerNeedsController < ApplicationController
 
   def get_needs
     if coordinator_signed_in?
-      current_coordinator.needs
-    elsif params[:agency_id] != "" && params[:agency_id] != nil
-      Agency.find_by(id: params[:agency_id]).needs
+      sort_needs(agency_specific_needs(current_coordinator.needs))
     else
-      Need.order(:start_date_time)
+      sort_needs(agency_specific_needs(Need.all))
+    end
+  end
+
+  def sort_needs(need_set)
+    if need_set != nil
+      need_set.order(:start_date_time)
+    else
+      []
+    end
+  end
+
+  def agency_specific_needs(need_set)
+    if params[:agency_id].to_s != ""
+      need_set.where(agency_id: params[:agency_id])
+    else
+      need_set
     end
   end
 
