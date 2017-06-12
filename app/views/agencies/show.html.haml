@@ -1,42 +1,52 @@
 %h1
   = @agency.name
-%p
+%h3
   %strong Created:
 %p
   = @agency.created_at
-%p
+%h3
   %strong Updated:
 %p
   = @agency.updated_at
-%p
+
+%h3
   %strong Coordinators:
-%p
-  %table.table-striped.table-responsive{:style => "width:100%"}
-    %thread
-      %tr{:style => "font-weight:bold;"}
-        %td First Name
-        %td Last Name
-        %td Email
-    %tbody
-      - @agency.coordinators.each do |coordinator|
-        %tr
-          %td= coordinator.first_name
-          %td= coordinator.last_name
-          %td= coordinator.email
-%p
-  %strong Galaxy ID:
-%p
-  = @agency.galaxy_id
+- if @agency.coordinators.count != 0
+  %p
+    %table.table-striped.table-responsive{:style => "width:100%"}
+      %thead
+        %tr{:style => "font-weight:bold;"}
+          %td First Name
+          %td Last Name
+          %td Email
+      %tbody
+        - @agency.coordinators.each do |coordinator|
+          %tr
+            %td= coordinator.first_name
+            %td= coordinator.last_name
+            %td= coordinator.email
+- else
+  %p
+    No coordinators!
 
-%p
+%h3
   %strong Needs:
-%p
-  %table.table-striped{:style => "width:100%"}
-    %tbody
-      - @agency.needs.each do |need|
-        %tr
-          %td= need.title
-          %td= need.time
-
+- if @agency.needs.count != 0
+  %p
+    %table.table-striped{:style => "width:100%"}
+      %thead
+        %tr{:style => "font-weight:bold;"}
+          %td= "Need Name"
+          %td= "Start Date & Time"
+          %td= "End Date & Time"
+      %tbody
+        - @agency.needs.order(:start_date_time).each do |need|
+          %tr
+            %td= need.title
+            %td= need.formatted_start_datetime
+            %td= need.formatted_end_datetime
+- else
+  %p
+    No needs!
 
 = link_to('Return', agencies_path, class: "btn btn-primary")

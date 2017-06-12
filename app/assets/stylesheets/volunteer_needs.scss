@@ -2,10 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-h1, h2, h3 {
-  color: #5E4F35;
-}
-
 .logged-in-tag {
   color: white;
   font-size: 15px;
@@ -21,20 +17,20 @@ h1, h2, h3 {
 
 @media (max-width: 899px)
 {
-  .big-screens-only {
+  .big-screen-only {
     display: none;
   }
-  .small-screens-only {
+  .small-screen-only {
     display: inline;
   }
 }
 
-@media (min-wdith: 900px)
+@media (min-width: 900px)
 {
-  .big-screens-only {
+  .big-screen-only {
     display: inline;
   }
-  .small-screens-only {
+  .small-screen-only {
     display: none;
   }
 }

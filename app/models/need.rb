@@ -34,6 +34,14 @@ class Need < ApplicationRecord
     time.strftime("%A %B %e, %Y\n%l:%M%p")
   end
 
+  def formatted_start_datetime()
+    self.start_date_time.strftime("%A %B %e, %Y\n%l:%M%p")
+  end
+
+  def formatted_end_datetime()
+    self.end_date_time.strftime("%A %B %e, %Y\n%l:%M%p")
+  end
+
   private
   def spaces_to_pluses(str)
     no_space_str = ''

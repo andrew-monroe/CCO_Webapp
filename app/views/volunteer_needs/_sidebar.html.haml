@@ -1,24 +1,60 @@
 .list-group.list-of-needs
-  %a.list-group-item.title-item{:style => "text-align:center;"}
-    Upcoming Needs
-  - @needs.each do |need|
-    - class_name = request.fullpath == "/needs/#{need.id}" ? 'active' : ''
-    %a.list-group-item.need-item{:href => volunteer_need_path(need), class: class_name}
-      .d-flex
-        .volunteer-box{class: need.pretty_class_name}
-          %span.volunteers Volunteers
-          - if need.volunteers_needed == 0 || need.volunteers_needed == nil
-            %div.volunteer-number
-              = need.volunteers_signed_up
-          - else
-            %div.volunteer-number
-              = need.volunteers_signed_up
-              \/ #{need.volunteers_needed}
-        %span.agency-name= need.agency_name
-        %br/
-        %span.need-name= need.title
-        %br/
-        %span.need-time
-          = need.time_range
-  %a.list-group-item.list-group-item-action.load-more{:href => "#", style: "text-align:center;"}
-    Load More
+  -if coordinator_signed_in?
+    %a.list-group-item.title-item{:style => "text-align:center;"}
+      My Upcoming Needs
+    %a.list-group-item.filter
+      = collection_select(:agency, :agency_id, current_coordinator.agencies.all.order(:name), :id, :name,
+        {:include_blank => "Any", :selected => params[:agency_id]},
+        {:onchange => 'reload_with_params()'})
+  -else
+    %a.list-group-item.title-item{:style => "text-align:center;"}
+      Upcoming Needs
+    %a.list-group-item.filter
+      = collection_select(:agency, :agency_id, Agency.all.order(:name), :id, :name,
+        {:include_blank => "Any", :selected => params[:agency_id]},
+        {:onchange => 'reload_with_params()'})
+
+  -if @needs.count == 0
+    %a.list-group-item{:style => "text-align:center;font-weight:bold;font-size:20px"}
+      No needs for now.
+      %br
+      %span{:style => "text-align:center;font-weight:normal;font-size:15px"}
+        (Come back later!)
+  -else
+    - @needs.each do |need|
+      - class_name = request.fullpath == "/needs/#{need.id}" ? 'active' : ''
+      %a.list-group-item.need-item{:href => volunteer_need_path(need), class: class_name}
+        .d-flex
+          .volunteer-box{class: need.pretty_class_name}
+            %span.volunteers Volunteers
+            - if need.volunteers_needed == 0 || need.volunteers_needed == nil
+              %div.volunteer-number
+                = need.volunteers_signed_up
+            - else
+              %div.volunteer-number
+                = need.volunteers_signed_up
+                \/ #{need.volunteers_needed}
+          %span.agency-name= need.agency_name
+          %br/
+          %span.need-name= need.title
+          %br/
+          %span.need-time
+            = need.time_range
+    %a.list-group-item.list-group-item-action.load-more{:href => "#", style: "text-align:center;"}
+      Load More
+
+:javascript
+  var reload_with_params = function(){
+    var sel = document.getElementById('agency_agency_id');
+    var url = window.location.href;
+    if (url.indexOf('?') > -1){
+      url = url.split('agency_id=')[0]+'agency_id='+sel.value
+    }else{
+      url += '?agency_id='+sel.value
+    }
+
+    if (sel.value == ""){
+      url = url.split('?')[0]
+    }
+    window.location.href = url;
+  }
