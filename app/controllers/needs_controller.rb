@@ -3,7 +3,7 @@ class NeedsController < ApplicationController
   layout 'private'
 
   def index
-    @needs = Need.all
+    @needs = Need.all.order(:start_date_time)
   end
 
   def show

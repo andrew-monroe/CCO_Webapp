@@ -3,7 +3,7 @@ class AgenciesController < ApplicationController
   layout 'private'
 
   def index
-    @agencies = Agency.all
+    @agencies = Agency.all.order(:name)
   end
 
   def show
