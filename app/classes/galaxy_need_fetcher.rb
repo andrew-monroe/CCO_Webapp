@@ -8,27 +8,26 @@ class GalaxyNeedFetcher < GalaxyApiFetcher
   end
 
   def update_need_database
-    get_need_list_from_galaxy.each do |need|
-      if @agency = Agency.find_by(galaxy_id: need['agencyId'])
-        @agency.needs.create({
-          title: need['needTitle'],
-          description: need['needDetails'],
-          agency_name: need['agencyName'],
-          time: need['needHoursDescription'],
-          location: convert_galaxy_need_location(need),
-          volunteers_needed: need['needVolunteersNeeded'],
-          volunteers_signed_up: get_volunteers_signed_up_count(need['needId']),
-          agency_id: need['agencyId'],
-          galaxy_id: need['needId'],
-          need_link: need['needLink'],
-          start_date_time: parse_start_date_time(need['needDate'], need['needHoursDescription']),
-          end_date_time: parse_end_date_time(need['needDate'], need['needHoursDescription'])
-          })
+    get_need_list_from_galaxy.each do |galaxy_need|
+      if @agency = Agency.find_by(galaxy_id: galaxy_need['agencyId'])
+        @agency.needs.find_or_create_by(galaxy_id: galaxy_need['needId']) do |need|
+          need.title = galaxy_need['needTitle']
+          need.description = galaxy_need['needDetails']
+          need.agency_name = galaxy_need['agencyName']
+          need.time = galaxy_need['needHoursDescription']
+          need.location = convert_galaxy_need_location(galaxy_need)
+          need.volunteers_needed = galaxy_need['needVolunteersNeeded']
+          need.volunteers_signed_up = get_volunteers_signed_up_count(galaxy_need['needId'])
+          need.agency_id = galaxy_need['agencyId']
+          need.need_link = galaxy_need['needLink']
+          need.start_date_time = parse_start_date_time(galaxy_need['needDate'], galaxy_need['needHoursDescription'])
+          need.end_date_time = parse_end_date_time(galaxy_need['needDate'], galaxy_need['needHoursDescription'])
+        end
       end
     end
   end
 
-  # private
+  private
   def get_volunteers_signed_up_count(need_galaxy_id)
     if need_galaxy_id == nil
       return nil

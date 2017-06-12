@@ -4,15 +4,14 @@ class GalaxyAgencyFetcher < GalaxyApiFetcher
   # end
 
   def update_agency_database
-    get_agency_list_from_galaxy.each do |agency|
-      Agency.create({
-        name: agency['agencyName'],
-        galaxy_id: agency['agencyId']
-        })
+    get_agency_list_from_galaxy.each do |galaxy_agency|
+      Agency.find_or_create_by(galaxy_id: galaxy_agency['agencyId']) do |agency|
+        agency.name = galaxy_agency['agencyName']
+      end
     end
   end
 
-  # private
+  private
   def get_agency_list_from_galaxy
     get_full_list_from_galaxy("/volunteer/agency/list/")
   end
