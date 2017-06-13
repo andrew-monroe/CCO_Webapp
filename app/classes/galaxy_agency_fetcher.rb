@@ -1,7 +1,4 @@
 class GalaxyAgencyFetcher < GalaxyApiFetcher
-  # def get_agency(agency_name)
-  #   Agency.find_by(name: "#{agency_name}")
-  # end
 
   def update_agency_database
     get_agency_list_from_galaxy.each do |galaxy_agency|

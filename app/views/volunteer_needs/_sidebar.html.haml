@@ -22,7 +22,7 @@
         (Come back later!)
   -else
     - @needs.each do |need|
-      - class_name = request.fullpath == "/needs/#{need.id}" ? 'active' : ''
+      - class_name = request.fullpath.include?("needs/#{need.id}") ? 'active' : ''
       %a.list-group-item.need-item{:href => volunteer_need_path(need), class: class_name}
         .d-flex
           .volunteer-box{class: need.pretty_class_name}

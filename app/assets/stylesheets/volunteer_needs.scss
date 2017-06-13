@@ -9,13 +9,16 @@
 
 .page-body {
   color: black;
+  position:relative;
+    top:30px;
+    left:30px;
 }
 
 .sidebar {
   padding-right: 0;
 }
 
-@media (max-width: 899px)
+@media (max-width: 991px)
 {
   .big-screen-only {
     display: none;
@@ -25,7 +28,7 @@
   }
 }
 
-@media (min-width: 900px)
+@media (min-width: 992px)
 {
   .big-screen-only {
     display: inline;
