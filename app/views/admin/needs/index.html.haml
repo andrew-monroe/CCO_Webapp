@@ -7,3 +7,17 @@
   %p{:style => "font-weight:bold;"}
     = link_to("View", admin_need_path(need), class: "btn btn-default btn")
     = need.title
+
+- if Need.all.count == @needs.count
+- elsif params['page'].to_s == "" || params['page'].to_i <= 0
+  = link_to('Next Page', admin_needs_path(:page => 1), class: "btn btn-primary")
+- elsif @needs.count == @amount
+  = link_to('Previous Page', admin_needs_path(:page => params['page'].to_i-1), class: "btn btn-primary")
+  = link_to('Next Page', admin_needs_path(:page => params['page'].to_i+1), class: "btn btn-primary")
+- else
+  = link_to('Previous Page', admin_needs_path(:page => params['page'].to_i-1), class: "btn btn-primary")
+
+%br
+%br
+%br
+%br

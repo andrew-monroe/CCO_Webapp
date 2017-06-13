@@ -2,10 +2,6 @@ class Need < ApplicationRecord
   validates :galaxy_id, uniqueness: true
   belongs_to :agency
 
-  # def get_recent
-  #   Need.find(:all, :order => "start_time desc", :limit => 10)
-  # end
-
   def no_space_location
     spaces_to_pluses(self.location)
   end
@@ -40,6 +36,12 @@ class Need < ApplicationRecord
 
   def formatted_end_datetime()
     self.end_date_time.strftime("%A %B %e, %Y\n%l:%M%p")
+  end
+
+  def self.get_some_needs(offset=0,amount=15)
+    offset = offset.to_i < 0 ? 0 : offset.to_i
+    amount = amount.to_i
+    Need.limit(amount).offset(offset*amount).order(:start_date_time)
   end
 
   private

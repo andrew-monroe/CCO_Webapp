@@ -3,10 +3,16 @@ class Admin::UsersController < ApplicationController
   layout 'private'
 
   def index
-    if @users = User.get_some_users(params[:page])
-      @users
+    @amount = 15
+    if params[:page].to_i < 0 || params[:page] == nil
+      params[:page] = 0
+    end
+    @users = User.get_some_users(params[:page],@amount)
+    if @users.count == 0 && params[:page] != 0
+      params[:page] = 0
+      redirect_to admin_users_path
     else
-      @users = get_some_users
+      @users
     end
   end
 
