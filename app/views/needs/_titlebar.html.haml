@@ -10,4 +10,4 @@
     .logged-in-tag Logged in as #{current_coordinator.email}
     = link_to('Logout', destroy_coordinator_session_path, :method => :delete, class: "btn btn-primary")
   - else
-    = link_to('Login', new_coordinator_session_path, class: "btn btn-primary")
+    = link_to('Coordinator Login', new_coordinator_session_path, class: "btn btn-sm btn-default")
