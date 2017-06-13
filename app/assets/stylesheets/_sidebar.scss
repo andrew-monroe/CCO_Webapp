@@ -1,8 +1,12 @@
 .list-group.list-of-needs, .list-group-item.need-item {
 
   background-color: #F0F4CF;
-  border: none;
+  border-top:1px solid #5E4F35;
   border-radius: 0;
+
+  .list-group-item.need-item:hover {
+    background-color: #DEE2AD;
+  }
 
   .active {
     background-color: #FBAC00;
@@ -12,9 +16,10 @@
     background-color: #5E4F35;
     color: #FFFFFF;
     font-size: 30px;
+    border:1px solid #5E4F35;
   }
   .load-more:hover {
-    background-color: blue;
+    background-color: #3C2D13;
     color: #FFFFFF;
     font-size: 30px;
   }
@@ -24,10 +29,16 @@
     color: #FFFFFF;
     font-size: 30px;
     cursor: auto;
+    border:1px solid #5E4F35;
   }
   .filter {
     cursor: auto;
-    background-color: white;
+    background-color: gray;
+    border:1px solid #5E4F35;
+
+    select {
+      width:100%;
+    }
   }
 
   .agency-name, .need-time {

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :needs, only: [:index, :show]
 
+  get '/admin', to: 'admin/agencies#index'
+
   namespace :admin do
     resources :coordinators
     resources :agencies, only: [:index, :show]

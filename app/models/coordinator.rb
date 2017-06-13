@@ -7,4 +7,17 @@ class Coordinator < ApplicationRecord
   # has_many :agency_coordinations
   has_and_belongs_to_many :agencies
   has_many :needs, :through => :agencies
+
+  def list_of_agencies
+    list_str = ""
+    agency_names = self.agencies.collect {|agency| agency[:name]}
+    agency_names.each do |agency|
+      if agency != agency_names.first
+        list_str += "<br>"+agency
+      else
+        list_str += agency
+      end
+    end
+    list_str
+  end
 end

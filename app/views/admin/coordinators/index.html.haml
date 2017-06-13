@@ -1,13 +1,13 @@
 %h1 Administrate Coordinators
+%br
 .table-responsive
-  %table.table-striped{:style => "width:100%"}
-    %thead
+  %table.table-striped{:style => "width:100%;"}
+    %thead{:style => "font-size:15px;"}
       %tr
         %th First
         %th Last
         %th Email
-        -# %th Admin
-        -# %th Moderator For
+        %th Coordinator For
         %th Actions
         %th
     %tbody
@@ -16,12 +16,12 @@
           %td= coordinator.first_name
           %td= coordinator.last_name
           %td= coordinator.email
-          -# %td= coordinator.admin ? "True" : "False"
-          -# %td= coordinator.moderator_for
+          %td= coordinator.list_of_agencies.html_safe
           %td= link_to 'Edit', edit_admin_coordinator_path(coordinator)
           %td= link_to 'Destroy', admin_coordinator_path(coordinator), |
               method: :delete,                    |
               data: { confirm: 'Are you sure?' }  |
 
-
+%br
+%br
 = link_to('Add Coordinator', new_admin_coordinator_path, class: "btn btn-primary")
