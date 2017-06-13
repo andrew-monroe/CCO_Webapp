@@ -8,9 +8,9 @@ class GalaxyNeedFetcher < GalaxyApiFetcher
     get_need_list_from_galaxy.each do |galaxy_need|
       if @agency = Agency.find_by(galaxy_id: galaxy_need['agencyId'])
         @agency.needs.find_or_create_by(galaxy_id: galaxy_need['needId']) do |need|
-          need.title = galaxy_need['needTitle']
+          need.title = galaxy_need['needTitle'].to_s
           need.description = galaxy_need['needDetails']
-          need.agency_name = galaxy_need['agencyName']
+          need.agency_name = galaxy_need['agencyName'].to_s
           need.time = galaxy_need['needHoursDescription']
           need.location = convert_galaxy_need_location(galaxy_need)
           need.volunteers_needed = galaxy_need['needVolunteersNeeded']

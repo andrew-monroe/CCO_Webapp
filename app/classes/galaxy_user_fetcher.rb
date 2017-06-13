@@ -4,14 +4,38 @@ class GalaxyUserFetcher < GalaxyApiFetcher
     get_full_list_from_galaxy("/volunteer/user/list/")
   end
 
+  # def update_user_database
+  #   get_user_list_from_galaxy.each do |galaxy_user|
+  #     User.find_or_create_by(email: galaxy_user['email']) do |user|
+  #       user.first_name = galaxy_user['firstName'].to_s.downcase.titleize
+  #       user.last_name = galaxy_user['lastName'].to_s.downcase.titleize
+  #       user.admin = false
+  #       user.moderator_for = ""
+  #     end
+  #   end
+  # end
+
   def update_user_database
-    get_user_list_from_galaxy.each do |galaxy_user|
-      User.find_or_create_by(email: galaxy_user['email']) do |user|
-        user.first_name = galaxy_user['firstName']
-        user.last_name = galaxy_user['lastName']
-        user.admin = false
-        user.moderator_for = ""
+    page = 0
+    uri = "/volunteer/user/list/"
+    optional_params = {}
+    get_more = []
+    while page == 0 || get_more != []
+      get_more = get_list_from_galaxy(uri,optional_params,50,page*50)
+      get_more.each do |galaxy_user|
+        add_user_to_database(galaxy_user)
       end
+      page += 1
+    end
+  end
+
+  private
+  def add_user_to_database(galaxy_user)
+    User.find_or_create_by(email: galaxy_user['email']) do |user|
+      user.first_name = galaxy_user['firstName'].to_s.downcase.titleize
+      user.last_name = galaxy_user['lastName'].to_s.downcase.titleize
+      user.admin = false
+      user.moderator_for = ""
     end
   end
 end
