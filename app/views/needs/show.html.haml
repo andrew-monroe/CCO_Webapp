@@ -1,21 +1,4 @@
-%h1
-  = @need.title
-%p
-  %strong Start Date Time:
-%p
-  = @need.start_date_time
-%p
-  %strong End Date Time:
-%p
-  = @need.end_date_time
-%p
-  %strong Agency:
-%p
-  = @need.agency.name
-%p
-  %strong Link:
-%p
-  = link_to('Galaxy Page', "#{@need.need_link}", class: "btn btn-default")
-
-%br
-= link_to('Return', needs_path, class: "btn btn-primary btn-lg")
+.col-md-5.col-lg-4.sidebar.big-screen-only{:style => "padding-left:0;z-index:20;"}
+  = render partial: 'sidebar', layout: 'sidebar'
+.col-xs-11.col-sm-11.col-md-6.col-lg-7.page-body
+  = render partial: 'need_display'
