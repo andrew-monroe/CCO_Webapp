@@ -1,0 +1,48 @@
+%p{:style => "font-size:20px;color:#777777;"}
+  = @need.agency_name
+%p{:style => "font-size:40px;font-weight:bold;"}
+  = @need.title
+
+- if @need.start_date_time != nil
+  %p
+    %h2 Start Time:
+    %span{:style => "font-size:20px;"}
+      = @need.formatted_start_datetime
+  %br
+- if @need.end_date_time != nil
+  %p
+    %h2 End Time:
+    %span{:style => "font-size:20px;"}
+      = @need.formatted_end_datetime
+  %br
+
+- if @need.description != nil
+  %p
+    %h2 Description:
+    %br
+    = @need.description.html_safe
+  %br
+
+- if @need.volunteers_needed != nil && @need.volunteers_needed != 0
+  %p
+    %h2 Volunteers Needed:
+    = @need.volunteers_needed
+  %p
+    %h2 Volunteers Signed Up:
+    = @need.volunteers_signed_up
+
+%p
+  %h2 Location:
+  %span{:style => "font-size:20px;"}
+    = @need.location
+%iframe{:allowfullscreen => "", :frameborder => "0", :height => "300px", :width => "400px", :src => "https://www.google.com/maps/embed/v1/place?key=#{ENV["GOOGLE_MAPS_API_KEY"]}&q=#{@need.no_space_location}", :style => "border:0;padding-bottom:20px;"}
+
+%br
+
+= link_to('Sign Me Up!', "#{@need.need_link}", class: "btn btn-lg btn-primary")
+= link_to('Go Back', volunteer_needs_path, class: "btn btn-default small-screen-only")
+
+%br
+%br
+%br
+%br
