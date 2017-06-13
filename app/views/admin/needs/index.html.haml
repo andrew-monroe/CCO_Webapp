@@ -1,0 +1,9 @@
+%h1 Administrate Needs
+= link_to('Fetch Needs', galaxy_fetch_needs_path, class: "btn btn-primary")
+%br
+%br
+
+- @needs.each do |need|
+  %p{:style => "font-weight:bold;"}
+    = link_to("View", admin_need_path(need), class: "btn btn-default btn")
+    = need.title

@@ -1,4 +1,4 @@
-class CoordinatorsController < ApplicationController
+class Admin::CoordinatorsController < ApplicationController
   before_action :authenticate_admin!
   layout 'private'
 
@@ -13,7 +13,7 @@ class CoordinatorsController < ApplicationController
   def create
     @coordinator = Coordinator.new(coordinator_params)
     if @coordinator.save
-      redirect_to coordinators_path, notice: "Good job"
+      redirect_to admin_coordinators_path, notice: "Good job"
     else
       render action: "new"
     end
@@ -30,13 +30,13 @@ class CoordinatorsController < ApplicationController
   def update
     @coordinator = Coordinator.find(params[:id])
     @coordinator.update(coordinator_params)
-    redirect_to coordinators_path
+    redirect_to admin_coordinators_path
   end
 
   def destroy
     @coordinator = Coordinator.find(params[:id])
     @coordinator.destroy
-    redirect_to coordinator_path
+    redirect_to admin_coordinator_path
   end
 
   private

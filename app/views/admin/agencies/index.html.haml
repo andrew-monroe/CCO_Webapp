@@ -5,5 +5,5 @@
 
 - @agencies.each do |agency|
   %p{:style => "font-weight:bold;"}
-    = link_to("View", agency_path(agency), class: "btn btn-default btn")
+    = link_to("View", admin_agency_path(agency), class: "btn btn-default btn")
     = agency.name

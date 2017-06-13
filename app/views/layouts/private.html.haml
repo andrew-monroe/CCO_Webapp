@@ -26,13 +26,13 @@
           %a.navbar-brand Admin Mode
         %ul.nav.navbar-nav
           %li
-            = link_to('Agencies', agencies_path)
+            = link_to('Agencies', admin_agencies_path)
           %li
-            = link_to('Coordinators', coordinators_path)
+            = link_to('Coordinators', admin_coordinators_path)
           %li
-            = link_to('Needs', needs_path)
+            = link_to('Needs', admin_needs_path)
           %li
-            = link_to('Users', users_path)
+            = link_to('Users', admin_users_path)
         %ul.nav.navbar-nav.navbar-right
           %li
             - if admin_signed_in?

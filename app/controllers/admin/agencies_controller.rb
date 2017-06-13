@@ -1,4 +1,4 @@
-class AgenciesController < ApplicationController
+class Admin::AgenciesController < ApplicationController
   before_action :authenticate_admin!
   layout 'private'
 
