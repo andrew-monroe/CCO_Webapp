@@ -35,7 +35,7 @@
   %h2 Location:
   %span{:style => "font-size:20px;"}
     = @need.location
-%iframe{:allowfullscreen => "", :frameborder => "0", :height => "300px", :width => "400px", :src => "https://www.google.com/maps/embed/v1/place?key=#{ENV["GOOGLE_MAPS_API_KEY"]}&q=#{@need.no_space_location}", :style => "border:0;padding-bottom:20px;"}
+%iframe{:allowfullscreen => "", :frameborder => "0", :height => "300px", :width => "100%", :src => "https://www.google.com/maps/embed/v1/place?key=#{ENV["GOOGLE_MAPS_API_KEY"]}&q=#{@need.no_space_location}", :style => "border:0;padding-bottom:20px;"}
 
 %br
 
