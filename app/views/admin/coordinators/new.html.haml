@@ -1,48 +1,8 @@
-= form_for @coordinator, url: admin_coordinators_path do |f|
+= simple_form_for @coordinator, url: admin_coordinators_path do |f|
   %h1 New Coordinator
-  .table-responsive
-    %table.table
-      %tbody
-        %tr
-          %td
-            %strong First Name:
-          %td
-            = f.text_field :first_name
-        %tr
-          %td
-            %strong Last Name:
-          %td
-            = f.text_field :last_name
-        %tr
-          %td
-            %strong Email:
-          %td
-            = f.email_field :email
-        %tr
-          %td
-            %strong Password:
-          %td
-            - if @minimum_password_length
-              %em
-                (#{@minimum_password_length} characters minimum)
-            %br/
-            = f.password_field :password, autocomplete: "off"
-        %tr
-          %td
-            %strong Coordinator For:
-          %td
-            = f.collection_check_boxes :agency_ids, Agency.all, :id, :name do |b|
-              = b.check_box
-              = b.label
-              %br
-
-  - if @coordinator.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@coordinator.errors.count, "error")
-        prohibited this post from being saved:
-      %ul
-        - @coordinator.errors.full_messages.each do |msg|
-          %li= msg
-
-  = f.submit
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :email
+  = f.input :password
+  = f.input :agency_ids, collection: Agency.all, as: :check_boxes
+  = f.button :submit
