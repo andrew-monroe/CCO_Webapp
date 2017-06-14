@@ -16,7 +16,7 @@
         %tr
           %td= agency.name
           %td= agency.needs.count
-          %td= agency.list_of_coordinators
+          %td= agency.list_of_coordinators.html_safe
           %td= link_to 'View', admin_agency_path(agency)
 
 - if Agency.all.count == @agencies.count
