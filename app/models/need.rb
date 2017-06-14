@@ -1,5 +1,5 @@
 class Need < ApplicationRecord
-  validates :galaxy_id, uniqueness: true
+  validates :galaxy_id, uniqueness: true, presence: true
   belongs_to :agency
 
   def no_space_location
@@ -42,6 +42,11 @@ class Need < ApplicationRecord
     offset = offset.to_i < 0 ? 0 : offset.to_i
     amount = amount.to_i
     Need.limit(amount).offset(offset*amount).order(:start_date_time)
+  end
+
+  def fetch_volunteer_responses
+    self.volunteers_signed_up = GalaxyNeedFetcher.new.get_volunteers_signed_up_count(self.galaxy_id)
+    self.save
   end
 
   private

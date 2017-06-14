@@ -7,33 +7,46 @@ class GalaxyNeedFetcher < GalaxyApiFetcher
   def update_need_database
     get_need_list_from_galaxy.each do |galaxy_need|
       if @agency = Agency.find_by(galaxy_id: galaxy_need['agencyId'])
-        @agency.needs.find_or_create_by(galaxy_id: galaxy_need['needId']) do |need|
-          need.title = galaxy_need['needTitle'].to_s
-          need.description = galaxy_need['needDetails']
-          need.agency_name = galaxy_need['agencyName'].to_s
-          need.time = galaxy_need['needHoursDescription']
-          need.location = convert_galaxy_need_location(galaxy_need)
-          need.volunteers_needed = galaxy_need['needVolunteersNeeded']
-          need.volunteers_signed_up = get_volunteers_signed_up_count(galaxy_need['needId'])
-          need.agency_id = galaxy_need['agencyId']
-          need.need_link = galaxy_need['needLink']
-          need.start_date_time = parse_start_date_time(galaxy_need['needDate'], galaxy_need['needHoursDescription'])
-          need.end_date_time = parse_end_date_time(galaxy_need['needDate'], galaxy_need['needHoursDescription'])
+        @need = @agency.needs.find_or_create_by(galaxy_id: galaxy_need['needId'])
+        unless @need.update_attributes({
+          title: galaxy_need['needTitle'].to_s,
+          description: galaxy_need['needDetails'],
+          agency_name: galaxy_need['agencyName'].to_s,
+          time: galaxy_need['needHoursDescription'],
+          location: convert_galaxy_need_location(galaxy_need),
+          volunteers_needed: galaxy_need['needVolunteersNeeded'].to_i,
+          volunteers_signed_up: get_volunteers_signed_up_count(galaxy_need['needId'].to_i),
+          need_link: galaxy_need['needLink'],
+          start_date_time: parse_start_date_time(galaxy_need['needDate'], galaxy_need['needHoursDescription']),
+          end_date_time: parse_end_date_time(galaxy_need['needDate'], galaxy_need['needHoursDescription'])
+        })
+          puts @need.errors.inspect
         end
       end
     end
   end
 
-  private
   def get_volunteers_signed_up_count(need_galaxy_id)
     if need_galaxy_id == nil
       return nil
     end
-    volunteers_signed_up = get_from_galaxy("/volunteer/response/list/",
-                            { :agencyId => need_galaxy_id })
-    volunteers_signed_up.count
+    get_volunteers_signed_up(need_galaxy_id).count
   end
 
+  def get_volunteers_signed_up(need_galaxy_id)
+    if need_galaxy_id == nil
+      return nil
+    end
+    get_from_galaxy("/volunteer/response/list/",{ :needId => need_galaxy_id.to_i })
+  end
+
+  def dump_need_database
+    Need.all.each do |need|
+      need.destroy
+    end
+  end
+
+  private
   def convert_galaxy_need_location(need)
     address = need['needAddress']!=nil ? need['needAddress']+"\n" : ""
     if need['needCity']!=nil && need['needState']!=nil
