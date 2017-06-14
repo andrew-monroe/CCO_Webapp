@@ -1,3 +1,7 @@
+= link_to('Go Back', needs_path, class: "btn btn-default small-screen-only")
+%br.small-screen-only
+%br.small-screen-only
+
 %p{:style => "font-size:20px;color:#777777;"}
   = @need.agency_name
 %p{:style => "font-size:40px;font-weight:bold;"}
@@ -42,9 +46,15 @@
 = link_to('Sign Me Up!', "#{@need.need_link}", class: "btn btn-block btn-lg btn-primary")
 %br
 %br
+- if coordinator_signed_in?
+  = mail_to("","Email Volunteers",
+    subject: get_email_subject_line(@need),
+    cc: "cco@ku.edu",
+    bcc:get_volunteers_emails(@need),
+    class:"btn btn-success btn-block")
+%br
+%br
 = link_to('Go Back', needs_path, class: "btn btn-default btn-lg small-screen-only")
-
-%br
-%br
-%br
-%br
+%br.small-screen-only
+%br.small-screen-only
+%br.small-screen-only
