@@ -10,4 +10,4 @@
     Logged in as #{current_coordinator.first_name + " " + current_coordinator.last_name}
     = link_to('Logout', destroy_coordinator_session_path, :method => :delete, class: "btn btn-primary")
   - else
-    = link_to('Coordinator Login', new_coordinator_session_path, class: "btn btn-sm btn-default")
+    = link_to('Coordinator Login', new_coordinator_session_path, class: "btn btn-primary")
