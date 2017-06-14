@@ -19,7 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'haml'
 
-gem 'devise'
+gem 'devise', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -58,5 +58,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'http'
-
 gem 'thin'
+gem 'simple_form'
+gem "letter_opener", :group => :development
+gem 'devise_invitable', '~> 1.7.0'
