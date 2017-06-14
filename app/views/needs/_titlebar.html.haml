@@ -5,9 +5,9 @@
     Community
     %br>/
     Outreach
-%div{:style => "float:right;padding-top:5px;"}
+%div{:style => "float:right;padding-top:5px;font-size:15px;font-weight:bold;"}
   - if coordinator_signed_in?
-    .logged-in-tag Logged in as #{current_coordinator.email}
+    Logged in as #{current_coordinator.first_name + " " + current_coordinator.last_name}
     = link_to('Logout', destroy_coordinator_session_path, :method => :delete, class: "btn btn-primary")
   - else
     = link_to('Coordinator Login', new_coordinator_session_path, class: "btn btn-sm btn-default")

@@ -11,7 +11,33 @@
 %p
   %strong Agency:
 %p
-  = @need.agency.name
+  = @need.agency_name
+%p
+  %strong Volunteers Needed:
+%p
+  = @need.volunteers_needed.to_s == "" ? "0" : @need.volunteers_needed.to_s
+%p
+  %strong Volunteers Signed Up:
+%p
+  = @need.volunteers_signed_up
+%p
+  .table-responsive
+    %table.table-striped{:style => "width:100%;"}
+      %thead{:style => "font-size:15px;"}
+        %tr
+          %th First Name
+          %th Last Name
+          %th Email
+      %tbody
+        - GalaxyNeedFetcher.new.get_volunteers_signed_up(@need.galaxy_id).each do |volunteer|
+          %tr
+            %td= volunteer['firstName'].downcase.titleize
+            %td= volunteer['lastName'].downcase.titleize
+            %td= volunteer['email']
+%p
+  %strong Galaxy ID:
+%p
+  = @need.galaxy_id
 %p
   %strong Link:
 %p

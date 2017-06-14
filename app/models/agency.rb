@@ -14,4 +14,17 @@ class Agency < ApplicationRecord
     amount = amount.to_i
     Agency.limit(amount).offset(offset*amount).order(:name)
   end
+
+  def list_of_coordinators
+    list_str = ""
+    coordinator_names = self.coordinators.collect {|coordinator| coordinator[:first_name]+" "+coordinator[:last_name]}
+    coordinator_names.each do |coordinator|
+      if coordinator != coordinator_names.first
+        list_str += "<br>"+coordinator
+      else
+        list_str += coordinator
+      end
+    end
+    list_str
+  end
 end

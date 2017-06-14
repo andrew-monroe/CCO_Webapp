@@ -1,12 +1,34 @@
 %h1 Administrate Needs
-= link_to('Fetch Needs', galaxy_fetch_needs_path, class: "btn btn-primary")
+-# = link_to('Fetch Needs', galaxy_fetch_needs_path, class: "btn btn-primary")
+= link_to('Hard Refresh Needs', galaxy_fetch_needs_path, class: "btn btn-primary")
 %br
 %br
 
-- @needs.each do |need|
-  %p{:style => "font-weight:bold;"}
-    = link_to("View", admin_need_path(need), class: "btn btn-default btn")
-    = need.title
+.table-responsive
+  %table.table-striped{:style => "width:100%;"}
+    %thead{:style => "font-size:15px;"}
+      %tr
+        %th Need Name
+        %th Agency
+        %th Volunteers Needed
+        %th Volunteers Signed Up
+        %th Actions
+        %th
+    %tbody
+      - @needs.each do |need|
+        %tr
+          %td= need.title
+          %td= need.agency_name
+          %td= need.volunteers_needed.to_s
+          %td= need.volunteers_signed_up
+          %td= link_to 'View', admin_need_path(need)
+          %td= link_to 'Destroy', admin_need_path(need), |
+              method: :delete,                    |
+              data: { confirm: 'Are you sure?' }  |
+
+-# %p{:style => "font-weight:bold;"}
+-#   = link_to("View", admin_need_path(need), class: "btn btn-default btn")
+-#   = need.title
 
 - if Need.all.count == @needs.count
 - elsif params['page'].to_s == "" || params['page'].to_i <= 0

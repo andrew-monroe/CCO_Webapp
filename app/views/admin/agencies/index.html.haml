@@ -1,12 +1,23 @@
-%h1 Administrate Agencies
+%h1 Administrate Programs
 = link_to('Fetch Agencies', galaxy_fetch_agencies_path, class: "btn btn-primary")
 %br
 %br
 
-- @agencies.each do |agency|
-  %p{:style => "font-weight:bold;"}
-    = link_to("View", admin_agency_path(agency), class: "btn btn-default btn")
-    = agency.name
+.table-responsive
+  %table.table-striped{:style => "width:100%;"}
+    %thead{:style => "font-size:15px;"}
+      %tr
+        %th Program Name
+        %th Current Number of Needs
+        %th Coordinators
+        %th Actions
+    %tbody
+      - @agencies.each do |agency|
+        %tr
+          %td= agency.name
+          %td= agency.needs.count
+          %td= agency.list_of_coordinators
+          %td= link_to 'View', admin_agency_path(agency)
 
 - if Agency.all.count == @agencies.count
 - elsif params['page'].to_s == "" || params['page'].to_i <= 0
