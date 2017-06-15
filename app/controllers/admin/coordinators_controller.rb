@@ -36,7 +36,7 @@ class Admin::CoordinatorsController < ApplicationController
   def destroy
     @coordinator = Coordinator.find(params[:id])
     @coordinator.destroy
-    redirect_to admin_coordinator_path
+    redirect_to admin_coordinators_path
   end
 
   private
