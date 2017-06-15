@@ -3,36 +3,43 @@
 %br
 %br
 
-.table-responsive
-  %table.table-striped{:style => "width:100%;"}
-    %thead{:style => "font-size:15px;"}
-      %tr
-        %th Need Name
-        %th Agency
-        %th Volunteers Needed
-        %th Volunteers Signed Up
-        %th Actions
-        %th
-    %tbody
-      - @needs.each do |need|
+- if @needs.count != 0
+  .table-responsive
+    %table.table.table-striped{:style => "width:100%;"}
+      %thead{:style => "font-size:15px;"}
         %tr
-          %td= need.title
-          %td= need.agency_name
-          %td= need.volunteers_needed.to_s
-          %td= need.volunteers_signed_up
-          %td= link_to 'View', admin_need_path(need)
-          %td= link_to 'Destroy', admin_need_path(need), |
-              method: :delete,                    |
-              data: { confirm: 'Are you sure?' }  |
-
-- if Need.all.count == @needs.count
-- elsif params['page'].to_s == "" || params['page'].to_i <= 0
-  = link_to('Next Page', admin_needs_path(:page => 1), class: "btn btn-primary")
-- elsif @needs.count == @amount
-  = link_to('Previous Page', admin_needs_path(:page => params['page'].to_i-1), class: "btn btn-primary")
-  = link_to('Next Page', admin_needs_path(:page => params['page'].to_i+1), class: "btn btn-primary")
+          %th{:style => "width:30%;"} Need Name
+          %th{:style => "width:30%;"} Agency
+          %th{:style => "width:10%;"} Volunteers Needed
+          %th{:style => "width:10%;"} Volunteers Signed Up
+          %th{:style => "width:10%;"} Actions
+          %th{:style => "width:10%;"}
+      %tbody
+        - @needs.each do |need|
+          %tr
+            %td= need.title
+            %td= need.agency_name
+            %td= need.volunteers_needed.to_s
+            %td= need.volunteers_signed_up
+            %td= link_to 'View', admin_need_path(need)
+            %td= link_to 'Destroy', admin_need_path(need), |
+                method: :delete,                    |
+                data: { confirm: 'Are you sure?' }  |
 - else
-  = link_to('Previous Page', admin_needs_path(:page => params['page'].to_i-1), class: "btn btn-primary")
+  %div{:style => "text-align:center;"}
+    %h3 No needs here!
+    %h4 (Try fetching?)
+
+%br
+%div{:style => "text-align:center;"}
+  - if Need.all.count == @needs.count
+  - elsif params['page'].to_s == "" || params['page'].to_i <= 0
+    = link_to('Next Page', admin_needs_path(:page => 1), class: "btn btn-primary")
+  - elsif @needs.count == @amount
+    = link_to('Previous Page', admin_needs_path(:page => params['page'].to_i-1), class: "btn btn-primary")
+    = link_to('Next Page', admin_needs_path(:page => params['page'].to_i+1), class: "btn btn-primary")
+  - else
+    = link_to('Previous Page', admin_needs_path(:page => params['page'].to_i-1), class: "btn btn-primary")
 
 %br
 %br
