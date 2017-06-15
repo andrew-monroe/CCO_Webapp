@@ -1,32 +1,40 @@
 %h1 Administrate Programs
-= link_to('Fetch Agencies', galaxy_fetch_agencies_path, class: "btn btn-primary")
+= link_to('Fetch Programs', galaxy_fetch_agencies_path, class: "btn btn-primary")
 %br
 %br
 
-.table-responsive
-  %table.table-striped{:style => "width:100%;"}
-    %thead{:style => "font-size:15px;"}
-      %tr
-        %th Program Name
-        %th Current Number of Needs
-        %th Coordinators
-        %th Actions
-    %tbody
-      - @agencies.each do |agency|
+- if @agencies.count != 0
+  .table-responsive
+    %table.table.table-striped{:style => "width:100%;"}
+      %thead{:style => "font-size:15px;"}
         %tr
-          %td= agency.name
-          %td= agency.needs.count
-          %td= agency.list_of_coordinators.html_safe
-          %td= link_to 'View', admin_agency_path(agency)
+          %th{:style => "width:40%;"} Program Name
+          %th{:style => "width:25%;"} Coordinators
+          %th{:style => "width:25%;"} Current Number of Needs
+          %th{:style => "width:10%;"} Actions
+      %tbody
+        - @agencies.each do |agency|
+          %tr
+            %td= agency.name
+            %td= agency.list_of_coordinators.html_safe
+            %td= agency.needs.count
+            %td= link_to 'View', admin_agency_path(agency)
+- else
+  %div{:style => "text-align:center;"}
+    %h3 No programs here!
+    %h4 (Try fetching?)
 
-- if Agency.all.count == @agencies.count
-- elsif params['page'].to_s == "" || params['page'].to_i <= 0
-  = link_to('Next Page', admin_agencies_path(:page => 1), class: "btn btn-primary")
-- elsif @agencies.count == @amount
-  = link_to('Previous Page', admin_agencies_path(:page => params['page'].to_i-1), class: "btn btn-primary")
-  = link_to('Next Page', admin_agencies_path(:page => params['page'].to_i+1), class: "btn btn-primary")
--else
-  = link_to('Previous Page', admin_agencies_path(:page => params['page'].to_i-1), class: "btn btn-primary")
+%br
+%br
+%div{:style => "text-align:center;"}
+  - if Agency.all.count == @agencies.count
+  - elsif params['page'].to_s == "" || params['page'].to_i <= 0
+    = link_to('Next Page', admin_agencies_path(:page => 1), class: "btn btn-primary")
+  - elsif @agencies.count == @amount
+    = link_to('Previous Page', admin_agencies_path(:page => params['page'].to_i-1), class: "btn btn-primary")
+    = link_to('Next Page', admin_agencies_path(:page => params['page'].to_i+1), class: "btn btn-primary")
+  -else
+    = link_to('Previous Page', admin_agencies_path(:page => params['page'].to_i-1), class: "btn btn-primary")
 %br
 %br
 %br

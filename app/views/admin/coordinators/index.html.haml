@@ -1,30 +1,37 @@
 %h1 Administrate Coordinators
 %br
-.table-responsive
-  %table.table-striped{:style => "width:100%;"}
-    %thead{:style => "font-size:15px;"}
-      %tr
-        %th First
-        %th Last
-        %th Email
-        %th Coordinator For
-        %th Actions
-        %th
-    %tbody
-      - @coordinators.each do |coordinator|
+
+- if @coordinators.count != 0
+  .table-responsive
+    %table.table.table-striped{:style => "width:100%;"}
+      %thead{:style => "font-size:15px;"}
         %tr
-          %td= coordinator.first_name
-          %td= coordinator.last_name
-          %td= coordinator.email
-          %td= coordinator.list_of_agencies.html_safe
-          %td= link_to 'Edit', edit_admin_coordinator_path(coordinator)
-          %td= link_to 'Destroy', admin_coordinator_path(coordinator), |
-              method: :delete,                    |
-              data: { confirm: 'Are you sure?' }  |
+          %th{:style => "width:15%;"} First
+          %th{:style => "width:15%;"} Last
+          %th{:style => "width:25%;"} Email
+          %th{:style => "width:30%;"} Coordinator For
+          %th{:style => "width:10%;"} Actions
+          %th{:style => "width:10%;"}
+      %tbody
+        - @coordinators.each do |coordinator|
+          %tr
+            %td= coordinator.first_name
+            %td= coordinator.last_name
+            %td= coordinator.email
+            %td= coordinator.list_of_agencies.html_safe
+            %td= link_to 'Edit', edit_admin_coordinator_path(coordinator)
+            %td= link_to 'Destroy', admin_coordinator_path(coordinator), |
+                method: :delete,                    |
+                data: { confirm: 'Are you sure?' }  |
+- else
+  %div{:style => "text-align:center;"}
+    %h3 No coordinators here!
+    %h4 Try making one!
 
 %br
 %br
-= link_to('Add Coordinator', new_admin_coordinator_path, class: "btn btn-primary")
+%div{:style => "text-align:center;"}
+  = link_to('Create Coordinator', new_admin_coordinator_path, class: "btn btn-primary")
 
 %br
 %br
