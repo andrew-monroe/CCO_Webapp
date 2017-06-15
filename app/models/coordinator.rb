@@ -5,7 +5,6 @@ class Coordinator < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :invite_for => 2.weeks
 
-  # has_many :agency_coordinations
   has_and_belongs_to_many :agencies
   has_many :needs, :through => :agencies
 
