@@ -4,7 +4,7 @@ class Admin::CoordinatorsController < ApplicationController
 
   def index
     @coordinators = Coordinator.all
-    TestMailer.my_test_email.deliver_now
+    TestMailer.my_test_email
   end
 
   def show
