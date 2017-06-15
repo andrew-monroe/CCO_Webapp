@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :admins
-  devise_for :coordinators
+  devise_for :coordinators, :skip => [:registrations]
+  as :coordinator do
+    get 'coordinators/edit' => 'devise/registrations#edit', :as => 'edit_coordinator_registration'
+    put 'coordinators' => 'devise/registrations#update', :as => 'coordinator_registration'
+  end
   # devise_for :installs
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :needs, only: [:index, :show]
