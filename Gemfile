@@ -63,3 +63,4 @@ gem 'thin'
 gem 'simple_form'
 gem "letter_opener", :group => :development
 gem 'devise_invitable', '~> 1.7.0'
+gem 'sendgrid-ruby'
