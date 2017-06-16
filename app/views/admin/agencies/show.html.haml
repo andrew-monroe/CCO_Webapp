@@ -13,7 +13,7 @@
   %strong Coordinators:
 - if @agency.coordinators.count != 0
   %p
-    %table.table-striped.table-responsive{:style => "width:100%"}
+    %table.table.table-striped.table-responsive{:style => "width:100%"}
       %thead
         %tr{:style => "font-weight:bold;"}
           %td First Name
@@ -33,7 +33,7 @@
   %strong Needs:
 - if @agency.needs.count != 0
   %p
-    %table.table-striped{:style => "width:100%"}
+    %table.table.table-striped{:style => "width:100%"}
       %thead
         %tr{:style => "font-weight:bold;"}
           %td= "Need Name"
