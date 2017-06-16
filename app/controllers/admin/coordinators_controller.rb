@@ -3,7 +3,7 @@ class Admin::CoordinatorsController < ApplicationController
   layout 'private'
 
   def index
-    @coordinators = Coordinator.all
+    @coordinators = Coordinator.all.order(:last_name)
   end
 
   def show
