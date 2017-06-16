@@ -1,6 +1,7 @@
-%h2= t "devise.invitations.new.header"
-= simple_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post} do |f|
-  = devise_error_messages!
-  - resource.class.invite_key_fields.each do |field|
-    = f.input field
-  = f.button :submit, t("devise.invitations.new.submit_button")
+.form-group.col-xs-offset-1.col-xs-10.col-sm-offset-2.col-sm-8.col-md-offset-4.col-md-4
+  %h2= t "devise.invitations.new.header"
+  = simple_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post} do |f|
+    = devise_error_messages!
+    - resource.class.invite_key_fields.each do |field|
+      = f.input field
+    = f.button :submit, t("devise.invitations.new.submit_button")

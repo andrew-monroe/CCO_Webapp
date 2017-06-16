@@ -1,7 +1,8 @@
-%h2= t 'devise.invitations.edit.header'
-= simple_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put } do |f|
-  = devise_error_messages!
-  = f.hidden_field :invitation_token
-  = f.input :password
-  = f.input :password_confirmation
-  = f.button :submit, t("devise.invitations.edit.submit_button")
+.form-group.col-xs-offset-1.col-xs-10.col-sm-offset-2.col-sm-8.col-md-offset-4.col-md-4
+  %h2= t 'devise.invitations.edit.header'
+  = simple_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put } do |f|
+    = devise_error_messages!
+    = f.hidden_field :invitation_token
+    = f.input :password, autofocus: true, autocomplete: "off"
+    = f.input :password_confirmation, autocomplete: "off"
+    = f.button :submit, t("devise.invitations.edit.submit_button")

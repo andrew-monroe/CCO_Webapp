@@ -13,6 +13,7 @@ class Admin::CoordinatorsController < ApplicationController
   def create
     @coordinator = Coordinator.new(coordinator_params)
     if @coordinator.save
+      @coordinator.invite!
       redirect_to admin_coordinators_path, notice: "Good job"
     else
       render action: "new"
