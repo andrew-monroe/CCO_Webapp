@@ -43,7 +43,7 @@ class Admin::CoordinatorsController < ApplicationController
   def password_reset
     @coordinator = Coordinator.find(params[:id])
     @coordinator.send_reset_password_instructions
-    redirect_to admin_coordinators_path
+    redirect_to admin_coordinator_path(@coordinator)
   end
 
   private
