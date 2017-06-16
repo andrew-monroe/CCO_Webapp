@@ -1,7 +1,7 @@
 %div{:style => "float:right;"}
   %br
-  = link_to('Fetch Programs', galaxy_fetch_agencies_path, class: "btn btn-primary")
-%h1 Administrate Programs
+  = link_to('Fetch Agencies', galaxy_fetch_agencies_path, class: "btn btn-primary")
+%h1 Administrate Agencies
 
 %br
 %br
@@ -24,7 +24,7 @@
             %td= link_to 'View', admin_agency_path(agency)
 - else
   %div{:style => "text-align:center;"}
-    %h3 No programs here!
+    %h3 No agencies here!
     %h4 (Try fetching?)
 
 %br

@@ -26,6 +26,10 @@ class Need < ApplicationRecord
     end
   end
 
+  def formatted_date()
+    self.start_date_time.strftime("%m/%d/%y")
+  end
+
   def formatted_datetime(time)
     time.strftime("%A %B %e, %Y\n%l:%M%p")
   end

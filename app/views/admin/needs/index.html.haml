@@ -11,8 +11,9 @@
     %table.table.table-striped{:style => "width:100%;"}
       %thead{:style => "font-size:15px;"}
         %tr
-          %th{:style => "width:30%;"} Need Name
-          %th{:style => "width:30%;"} Agency
+          %th{:style => "width:25%;"} Need Name
+          %th{:style => "width:10%;"} Date
+          %th{:style => "width:25%;"} Agency
           %th{:style => "width:10%;"} Volunteers Needed
           %th{:style => "width:10%;"} Volunteers Signed Up
           %th{:style => "width:10%;"} Actions
@@ -21,6 +22,7 @@
         - @needs.each do |need|
           %tr
             %td= need.title
+            %td= need.formatted_date
             %td= need.agency_name
             %td= need.volunteers_needed.to_s
             %td= need.volunteers_signed_up
