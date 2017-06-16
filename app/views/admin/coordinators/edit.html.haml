@@ -3,7 +3,7 @@
   = f.input :first_name, autofocus: true
   = f.input :last_name
   = f.input :email
-  -# = link_to("Send Reset Password Link", password_path(@coordinator), method: :post)
+  = link_to("Send Reset Password Link", password_reset_admin_coordinator_path(@coordinator), method: :put)
   = f.input :agency_ids, collection: Agency.all, as: :check_boxes
   = f.button :submit
 

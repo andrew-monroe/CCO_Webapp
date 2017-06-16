@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   get '/admin', to: 'admin/agencies#index'
 
   namespace :admin do
-    resources :coordinators
+    resources :coordinators do
+      put :password_reset, on: :member
+    end
+    # put 'coordinators/:id/password_reset', to: 'coordinators#password_reset', as: 'password_reset_coordinator'
     resources :agencies, only: [:index, :show]
     resources :users, only: [:index, :show]
     resources :needs, only: [:index, :show]

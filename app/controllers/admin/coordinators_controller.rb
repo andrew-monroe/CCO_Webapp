@@ -40,6 +40,12 @@ class Admin::CoordinatorsController < ApplicationController
     redirect_to admin_coordinators_path
   end
 
+  def password_reset
+    @coordinator = Coordinator.find(params[:id])
+    @coordinator.send_reset_password_instructions
+    redirect_to admin_coordinators_path
+  end
+
   private
   def coordinator_params
     params.require(:coordinator).permit(:first_name,:last_name,:email,:password,agency_ids:[])
