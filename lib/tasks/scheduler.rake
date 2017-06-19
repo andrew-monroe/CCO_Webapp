@@ -5,13 +5,13 @@ task :fetch_needs => :environment do
 end
 task :reset_needs => :environment do
   puts "Dump and re-fetch needs according to Galaxy..."
-  GalaxyNeedFetcher.new.dump_need_database
+  Need.destroy_all
   GalaxyNeedFetcher.new.update_need_database
   puts "Done."
 end
-task :dump_needs => :environment do
+task :destroy_all_needs => :environment do
   puts "Dump need database..."
-  GalaxyNeedFetcher.new.dump_need_database
+  Need.destroy_all
   puts "Done."
 end
 
@@ -23,13 +23,13 @@ task :fetch_agencies => :environment do
 end
 task :reset_agencies => :environment do
   puts "Dump and re-fetch agencies according to Galaxy..."
-  GalaxyAgencyFetcher.new.dump_agency_database
+  Agency.destroy_all
   GalaxyAgencyFetcher.new.update_agency_database
   puts "Done."
 end
-task :dump_agencies => :environment do
+task :destroy_all_agencies => :environment do
   puts "Dump agency database..."
-  GalaxyAgencyFetcher.new.dump_agency_database
+  Agency.destroy_all
   puts "Done."
 end
 
@@ -42,12 +42,12 @@ task :fetch_users => :environment do
 end
 task :reset_users => :environment do
   puts "Dump and re-fetch users according to Galaxy..."
-  GalaxyUsersFetcher.new.dump_user_database
+  User.destroy_all
   GalaxyUsersFetcher.new.update_user_database
   puts "Done."
 end
-task :dump_users => :environment do
+task :destroy_all_users => :environment do
   puts "Dump user database..."
-  GalaxyUsersFetcher.new.dump_user_database
+  User.destroy_all
   puts "Done."
 end
