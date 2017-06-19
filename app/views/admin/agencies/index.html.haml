@@ -31,15 +31,8 @@
 
 %br
 %br
-%div{:style => "text-align:center;"}
-  - if Agency.all.count == @agencies.count
-  - elsif params['page'].to_s == "" || params['page'].to_i <= 0
-    = link_to('Next Page', admin_agencies_path(:page => 1), class: "btn btn-primary")
-  - elsif @agencies.count == @amount
-    = link_to('Previous Page', admin_agencies_path(:page => params['page'].to_i-1), class: "btn btn-primary")
-    = link_to('Next Page', admin_agencies_path(:page => params['page'].to_i+1), class: "btn btn-primary")
-  -else
-    = link_to('Previous Page', admin_agencies_path(:page => params['page'].to_i-1), class: "btn btn-primary")
+.digg_pagination{:style => "text-align:center;"}
+  = will_paginate @agencies
 %br
 %br
 %br

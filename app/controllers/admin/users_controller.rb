@@ -3,17 +3,7 @@ class Admin::UsersController < ApplicationController
   layout 'private'
 
   def index
-    @amount = 15
-    if params[:page].to_i < 0 || params[:page] == nil
-      params[:page] = 0
-    end
-    @users = User.get_some_users(params[:page],@amount)
-    if @users.count == 0 && params[:page] != 0
-      params[:page] = 0
-      redirect_to admin_users_path
-    else
-      @users
-    end
+    @users = User.order(:last_name).paginate(:page => params[:page])
   end
 
   def show

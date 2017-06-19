@@ -3,7 +3,7 @@ class Admin::CoordinatorsController < ApplicationController
   layout 'private'
 
   def index
-    @coordinators = Coordinator.all.order(:last_name)
+    @coordinators = Coordinator.order(:last_name).paginate(:page => params[:page])
   end
 
   def show
