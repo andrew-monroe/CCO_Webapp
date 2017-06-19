@@ -40,12 +40,6 @@ class GalaxyNeedFetcher < GalaxyApiFetcher
     get_from_galaxy("/volunteer/response/list/",{ :needId => need_galaxy_id.to_i })
   end
 
-  def dump_need_database
-    Need.all.each do |need|
-      need.destroy
-    end
-  end
-
   private
   def convert_galaxy_need_location(need)
     address = need['needAddress']!=nil ? need['needAddress']+"\n" : ""

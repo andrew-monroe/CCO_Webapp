@@ -19,11 +19,16 @@ Rails.application.routes.draw do
     resources :agencies, only: [:index, :show]
     resources :users, only: [:index, :show]
     resources :needs, only: [:index, :show]
-  end
 
-  get '/galaxy/fetch_needs', to: 'galaxy#fetch_needs'
-  get '/galaxy/fetch_agencies', to: 'galaxy#fetch_agencies'
-  get '/galaxy/fetch_users', to: 'galaxy#fetch_users'
+    put '/galaxy/fetch_needs', to: 'galaxy#fetch_needs'
+    put '/galaxy/fetch_agencies', to: 'galaxy#fetch_agencies'
+    put '/galaxy/fetch_users', to: 'galaxy#fetch_users'
+
+    delete '/database/destroy_all_needs', to: 'database#destroy_all_needs'
+    delete '/database/destroy_all_agencies', to: 'database#destroy_all_agencies'
+    delete '/database/destroy_all_users', to: 'database#destroy_all_users'
+    delete '/database/destroy_all_coordinators', to: 'database#destroy_all_coordinators'
+  end
 
   root 'needs#index'
 end

@@ -1,4 +1,4 @@
-class GalaxyController < ApplicationController
+class Admin::GalaxyController < ApplicationController
   before_action :authenticate_admin!
 
   def fetch_needs
