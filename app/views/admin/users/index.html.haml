@@ -1,6 +1,8 @@
 %div{:style => "float:right;"}
   %br
-  = link_to('Fetch Users', galaxy_fetch_users_path, class: "btn btn-primary")
+  = link_to('Fetch Users', admin_galaxy_fetch_users_path, class: "btn btn-primary", method: :put)
+  = link_to('Destroy All Users', admin_database_destroy_all_users_path, class: "btn btn-danger",
+      method: :delete, data: { confirm: 'Are you sure?' })
 %h1 Administrate Users
 
 %br
