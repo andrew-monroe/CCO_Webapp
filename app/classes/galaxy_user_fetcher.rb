@@ -23,9 +23,7 @@ class GalaxyUserFetcher < GalaxyApiFetcher
     @user = User.find_or_create_by(email: galaxy_user['email'])
     @user.update_attributes({
       first_name: galaxy_user['firstName'].to_s.downcase.titleize,
-      last_name: galaxy_user['lastName'].to_s.downcase.titleize,
-      admie: false,
-      moderator_foe: ""
+      last_name: galaxy_user['lastName'].to_s.downcase.titleize
     })
   end
 end
