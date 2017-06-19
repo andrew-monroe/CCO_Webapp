@@ -7,6 +7,12 @@ class GalaxyAgencyFetcher < GalaxyApiFetcher
     end
   end
 
+  def dump_agency_database
+    Agency.all.each do |agency|
+      agency.destroy
+    end
+  end
+
   private
   def get_agency_list_from_galaxy
     get_full_list_from_galaxy("/volunteer/agency/list/")

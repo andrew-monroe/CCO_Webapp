@@ -18,6 +18,12 @@ class GalaxyUserFetcher < GalaxyApiFetcher
     end
   end
 
+  def dump_user_database
+    User.all.each do |user|
+      user.destroy
+    end
+  end
+
   private
   def add_user_to_database(galaxy_user)
     @user = User.find_or_create_by(email: galaxy_user['email'])
