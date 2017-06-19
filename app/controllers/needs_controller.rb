@@ -1,11 +1,11 @@
 class NeedsController < ApplicationController
 
   def index
-    @needs = get_needs
+    @needs = get_needs.where("start_date_time > ? ", Time.now)
   end
 
   def show
-    @needs = get_needs
+    @needs = get_needs.where("start_date_time > ? ", Time.now)
     @need = Need.find(params[:id])
   end
 
